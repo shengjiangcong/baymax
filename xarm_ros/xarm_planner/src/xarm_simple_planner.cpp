@@ -103,16 +103,13 @@ void XArmSimplePlanner::stop()
 }
 
 bool XArmSimplePlanner::do_pose_plan(xarm_planner::pose_plan::Request &req, xarm_planner::pose_plan::Response &res)
-{ 
-  // group.setStartStateToCurrentState();
+{
+  group.setPoseTarget(req.target);
+  
+  ROS_INFO("xarm_planner received new target: [ position: (%f, %f, %f), orientation: (%f, %f, %f, %f)", \
+    req.target.position.x, req.target.position.y, req.target.position.z, req.target.orientation.x, \
+    req.target.orientation.y, req.target.orientation.z, req.target.orientation.w);
 
-  group.setPoseTarget(req.target_l,"L_link6");
-  group.setPoseTarget(req.target_r,"R_link6");
-  
-  // ROS_INFO("xarm_planner received new target: [ position: (%f, %f, %f), orientation: (%f, %f, %f, %f)", \
-  //   req.target.position.x, req.target.position.y, req.target.position.z, req.target.orientation.x, \
-  //   req.target.orientation.y, req.target.orientation.z, req.target.orientation.w);
-  
   bool success = (group.plan(my_xarm_plan) == moveit::planning_interface::MoveItErrorCode::SUCCESS);
   res.success = success;
   ROS_INFO_NAMED("move_group_planner", "This plan (pose goal) %s", success ? "SUCCEEDED" : "FAILED");
@@ -198,11 +195,6 @@ int main(int argc, char** argv)
   nh.getParam("DOF", jnt_num);
   switch(jnt_num)
   {
-     case 12:
-    {
-      XArmSimplePlanner::PLANNING_GROUP = "xarm6s";
-      break;
-    }
     case 7:
     {
       XArmSimplePlanner::PLANNING_GROUP = "xarm7";

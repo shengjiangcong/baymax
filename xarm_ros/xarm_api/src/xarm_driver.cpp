@@ -92,7 +92,7 @@ namespace xarm_api
         gripper_move_server_ = nh_.advertiseService("gripper_move", &XARMDriver::GripperMoveCB, this);
         gripper_state_server_ = nh_.advertiseService("gripper_state", &XARMDriver::GripperStateCB, this);
 
-        set_vaccum_gripper_server_ = nh_.advertiseService("vaccum_gripper_set", &XARMDriver::VaccumGripperCB, this);
+        set_vacuum_gripper_server_ = nh_.advertiseService("vacuum_gripper_set", &XARMDriver::VacuumGripperCB, this);
 
         // controller_io (digital):
         set_controller_dout_server_ = nh_.advertiseService("set_controller_dout", &XARMDriver::SetControllerDOutCB, this);
@@ -117,6 +117,11 @@ namespace xarm_api
         //     ROS_ERROR("xArm Heartbeat error! ret = %d", ret);
         // }
         // ROS_INFO("xArm Heartbeat! %d", cmd_num);
+    }
+
+    bool XARMDriver::isConnectionOK(void)
+    {
+        return !arm_report_->is_ok(); // is_ok will return 0 if connection is normal
     }
 
     void XARMDriver::SleepTopicCB(const std_msgs::Float32ConstPtr& msg)
@@ -239,7 +244,7 @@ namespace xarm_api
     bool XARMDriver::SetTCPOffsetCB(xarm_msgs::TCPOffset::Request &req, xarm_msgs::TCPOffset::Response &res)
     {
         float offsets[6] = {req.x, req.y, req.z, req.roll, req.pitch, req.yaw};
-        res.ret = arm_cmd_->set_tcp_offset(offsets);
+        res.ret = arm_cmd_->set_tcp_offset(offsets) | arm_cmd_->save_conf();
         res.message = "set tcp offset: ret = " + std::to_string(res.ret); 
         return true;
     }
@@ -248,7 +253,7 @@ namespace xarm_api
     {   
         float Mass = req.mass;
         float CoM[3] = {req.xc, req.yc, req.zc};
-        res.ret = arm_cmd_->set_tcp_load(Mass, CoM);
+        res.ret = arm_cmd_->set_tcp_load(Mass, CoM) | arm_cmd_->save_conf();
         res.message = "set load: ret = " + std::to_string(res.ret); 
         return true;
     }
@@ -583,7 +588,7 @@ namespace xarm_api
         return true;
     }
 
-    bool XARMDriver::VaccumGripperCB(xarm_msgs::SetInt16::Request &req, xarm_msgs::SetInt16::Response &res)
+    bool XARMDriver::VacuumGripperCB(xarm_msgs::SetInt16::Request &req, xarm_msgs::SetInt16::Response &res)
     {
         if(req.data)
         {
@@ -595,7 +600,7 @@ namespace xarm_api
             res.ret = arm_cmd_->tgpio_set_digital(1, 0);
             res.ret = arm_cmd_->tgpio_set_digital(2, 1);
         }
-        res.message = "set vaccum gripper: " + std::to_string(req.data) + " ret = " + std::to_string(res.ret);
+        res.message = "set vacuum gripper: " + std::to_string(req.data) + " ret = " + std::to_string(res.ret);
         return true;
     }
 

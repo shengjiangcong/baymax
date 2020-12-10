@@ -92,55 +92,49 @@ int main(int argc, char** argv)
 	xarm_planner::single_straight_plan srv22;
 
 	double slp_t = 0.5;
-	geometry_msgs::Pose target_l;
-	target_l.position.x = 0.207+0.1;
-	target_l.position.y = -5.69346791064e-07+0.1;
-	target_l.position.z = 0.112000000001;
+	geometry_msgs::Pose target1;
+	target1.position.x = 0.3;
+	target1.position.y = -0.1;
+	target1.position.z = 0.2;
 
-	target_l.orientation.x = 1;
-	target_l.orientation.y = 0;
-	target_l.orientation.z = 0;
-	target_l.orientation.w = 0;
+	target1.orientation.x = 1;
+	target1.orientation.y = 0;
+	target1.orientation.z = 0;
+	target1.orientation.w = 0;
 
-	geometry_msgs::Pose target_r;
-	target_r.position.x = 0.207+0.1;
-	target_r.position.y = 0.999999430653;
-	target_r.position.z = 0.112000000001+0.1;
+	geometry_msgs::Pose target2;
+	target2.position.x = 0.3;
+	target2.position.y = 0.1;
+	target2.position.z = 0.2;
 
-	target_r.orientation.x = 1;
-	target_r.orientation.y = 0;
-	target_r.orientation.z = 0;
-	target_r.orientation.w = 0;
+	target2.orientation.x = 1;
+	target2.orientation.y = 0;
+	target2.orientation.z = 0;
+	target2.orientation.w = 0;
 
-	//左臂*号位置
-	geometry_msgs::Pose l_target1;
-	l_target1.position.x = 0;
-	l_target1.position.y = 0.3+0.2;
-	l_target1.position.z = 0+0.2;
+	geometry_msgs::Pose target3;
+	target3.position.x = 0.3;
+	target3.position.y = 0.1;
+	target3.position.z = 0.4;
 
-    l_target1.orientation.x = -0.382683432365;
-	l_target1.orientation.y = 0;
-	l_target1.orientation.z = 0;
-	l_target1.orientation.w = 0.923879532511;
+	target3.orientation.x = 1;
+	target3.orientation.y = 0;
+	target3.orientation.z = 0;
+	target3.orientation.w = 0;
 
-    //右臂*号位置
-	geometry_msgs::Pose r_target1;
-	r_target1.position.x = 0;
-	r_target1.position.y = -0.3+0.2;
-	r_target1.position.z = 0+0.2;
+	geometry_msgs::Pose target4;
+	target4.position.x = 0.3;
+	target4.position.y = -0.1;
+	target4.position.z = 0.4;
 
-    r_target1.orientation.x = -0.382683432365;
-	r_target1.orientation.y = 0;
-	r_target1.orientation.z = 0;
-	r_target1.orientation.w = 0.923879532511;
+	target4.orientation.x = 1;
+	target4.orientation.y = 0;
+	target4.orientation.z = 0;
+	target4.orientation.w = 0;
 
 	
-
-	
-	srv2.request.target_l = l_target1;
-	srv2.request.target_r = r_target1;
-
-	if(request_plan(client2, srv2))
+	srv.request.target = tar_joint22;
+	if(request_plan(client, srv))
 	{
 		ROS_INFO("Plan SUCCESS! Executing... ");
 		// msg.data = true;
@@ -151,63 +145,63 @@ int main(int argc, char** argv)
 	}
 	ros::Duration(slp_t).sleep(); // Wait for last execution to finish
 
-	// int i=0;
-	// for(i=0; i<10; i++)
-	// {
-	// 	srv22.request.target = target1;
-	// 	if(request_plan(client22, srv22))
-	// 	{
-	// 		ROS_INFO("Plan SUCCESS! Executing... ");
-	// 		// msg.data = true;
-	// 		// ros::Duration(1.0).sleep();
-	// 		// exec_pub.publish(msg);
-	// 		srv_exec.request.exec = true;
-	// 		request_exec(client_exec, srv_exec);
-	// 	}
-	// 	else
-	// 		break;
+	int i=0;
+	for(i=0; i<10; i++)
+	{
+		srv22.request.target = target1;
+		if(request_plan(client22, srv22))
+		{
+			ROS_INFO("Plan SUCCESS! Executing... ");
+			// msg.data = true;
+			// ros::Duration(1.0).sleep();
+			// exec_pub.publish(msg);
+			srv_exec.request.exec = true;
+			request_exec(client_exec, srv_exec);
+		}
+		else
+			break;
 
-	// 	srv22.request.target = target2;
-	// 	if(request_plan(client22, srv22))
-	// 	{
-	// 		ROS_INFO("Plan SUCCESS! Executing... ");
-	// 		// msg.data = true;
-	// 		// ros::Duration(1.0).sleep();
-	// 		// exec_pub.publish(msg);
-	// 		srv_exec.request.exec = true;
-	// 		request_exec(client_exec, srv_exec);
-	// 	}
-	// 	else
-	// 		break;
-	// 	srv22.request.target = target3;
-	// 	if(request_plan(client22, srv22))
-	// 	{
-	// 		ROS_INFO("Plan SUCCESS! Executing... ");
-	// 		// msg.data = true;
-	// 		// ros::Duration(1.0).sleep();
-	// 		// exec_pub.publish(msg);
-	// 		srv_exec.request.exec = true;
-	// 		request_exec(client_exec, srv_exec);
-	// 	}
-	// 	else
-	// 		break;
-	// 	srv22.request.target = target4;
-	// 	if(request_plan(client22, srv22))
-	// 	{
-	// 		ROS_INFO("Plan SUCCESS! Executing... ");
-	// 		// msg.data = true;
-	// 		// ros::Duration(1.0).sleep();
-	// 		// exec_pub.publish(msg);
-	// 		srv_exec.request.exec = true;
-	// 		request_exec(client_exec, srv_exec);
-	// 	}
-	// 	else
-	// 		break;
+		srv22.request.target = target2;
+		if(request_plan(client22, srv22))
+		{
+			ROS_INFO("Plan SUCCESS! Executing... ");
+			// msg.data = true;
+			// ros::Duration(1.0).sleep();
+			// exec_pub.publish(msg);
+			srv_exec.request.exec = true;
+			request_exec(client_exec, srv_exec);
+		}
+		else
+			break;
+		srv22.request.target = target3;
+		if(request_plan(client22, srv22))
+		{
+			ROS_INFO("Plan SUCCESS! Executing... ");
+			// msg.data = true;
+			// ros::Duration(1.0).sleep();
+			// exec_pub.publish(msg);
+			srv_exec.request.exec = true;
+			request_exec(client_exec, srv_exec);
+		}
+		else
+			break;
+		srv22.request.target = target4;
+		if(request_plan(client22, srv22))
+		{
+			ROS_INFO("Plan SUCCESS! Executing... ");
+			// msg.data = true;
+			// ros::Duration(1.0).sleep();
+			// exec_pub.publish(msg);
+			srv_exec.request.exec = true;
+			request_exec(client_exec, srv_exec);
+		}
+		else
+			break;
 
-	// }
+	}
 
-	// if(i<10)
-	// 	ROS_ERROR("Execution Failed at loop: %d!", i+1);
+	if(i<10)
+		ROS_ERROR("Execution Failed at loop: %d!", i+1);
 
 	// ros::Duration(4.0).sleep(); // Wait for last execution to finish
 

@@ -111,10 +111,11 @@ $ roslaunch xarm_description xarm7_rviz_display.launch
 ```
 ## 4.7 如果已安装Gazebo,可以执行demo查看效果
    ```bash
-   $ roslaunch xarm_gazebo xarm7_beside_table.launch [run_demo:=true] [add_gripper:=true]
+   $ roslaunch xarm_gazebo xarm7_beside_table.launch [run_demo:=true] [add_gripper:=true] [add_vacuum_gripper:=true] 
    ```
 &ensp;&ensp;指定'run_demo'为true时Gazebo环境启动后机械臂会自动执行一套编好的循环动作。 这套简单的command trajectory写在xarm_controller\src\sample_motion.cpp. 这个demo加载的控制器使用position interface（纯位置控制）。  
-&ensp;&ensp;指定'add_gripper'为true时, 会加载带有xarm 夹爪的模型。
+&ensp;&ensp;指定'add_gripper'为true时, 会加载带有xarm 夹爪的模型。  
+&ensp;&ensp;指定'add_vacuum_gripper'为true时, 会加载带有xarm 真空吸头的模型。注意：只能加载一款末端器件。  
 
 # 5. 代码库介绍及使用说明
    
@@ -154,7 +155,9 @@ $ roslaunch xarm_description xarm7_rviz_display.launch
    ```bash
    $ roslaunch xarm7_gripper_moveit_config xarm7_gripper_moveit_gazebo.launch
    ```
-   如果您在Moveit界面中规划了一条满意的轨迹, 点按"Execute"会使Gazebo中的虚拟机械臂同步执行此轨迹。
+   如果您在Moveit界面中规划了一条满意的轨迹, 点按"Execute"会使Gazebo中的虚拟机械臂同步执行此轨迹。  
+
+   3. 如果**需要带有xArm 真空吸头**，用"vacuum_gripper"替换掉上面例子中的"gripper"关键字即可。  
 
 #### Moveit!图形控制界面 + xArm 真实机械臂:
    首先, 检查并确认xArm电源和控制器已上电开启, 然后运行:  
@@ -169,6 +172,13 @@ $ roslaunch xarm_description xarm7_rviz_display.launch
    $ roslaunch xarm7_gripper_moveit_config realMove_exec.launch robot_ip:=<your controller box LAN IP address>
    ```
    如果使用了我们配套的机械爪(xArm gripper), 最好可以使用这个package，因为其中的配置会让Moveit在规划无碰撞轨迹时将机械爪考虑在内。 
+
+#### Moveit!图形控制界面 + 安装了UFACTORY真空吸头的xArm真实机械臂:  
+   首先, 检查并确认xArm电源和控制器已上电开启, 然后运行:  
+   ```bash
+   $ roslaunch xarm7_vacuum_gripper_moveit_config realMove_exec.launch robot_ip:=<your controller box LAN IP address>
+   ```
+   如果使用了我们配套的真空吸头(xArm vacuum gripper), 最好可以使用这个package，因为其中的配置会让Moveit在规划无碰撞轨迹时将真空吸头考虑在内。 
   
 
 ## 5.6 xarm_planner:
@@ -275,13 +285,13 @@ $ rosservice call /xarm/set_controller_dout 5 1  (设定输出端口5的逻辑�
 &ensp;&ensp;基于运行时性能考虑，目前以上两个topic的数据更新率固定为 ***5Hz***.  
 
 #### 关于设定末端工具偏移量:  
-&ensp;&ensp;末端工具的偏移量可以也通过'/xarm/set_tcp_offset'服务来设定,参考下图，请注意这一坐标偏移量是基于 ***原始工具坐标系*** (坐标系B)描述的，它位于末端法兰中心，并且相对基坐标系(坐标系A)有（PI, 0, 0)的RPY旋转偏移。
+&ensp;&ensp;末端工具的偏移量可以也通过'/xarm/set_tcp_offset'服务来设定,参考下图，请注意这一坐标偏移量是基于 ***默认工具坐标系*** (坐标系B)描述的，它位于末端法兰中心，并且相对基坐标系(坐标系A)有（PI, 0, 0)的RPY旋转偏移。
 ![xArmFrames](./doc/xArmFrames.png)  
 &ensp;&ensp;例如：
 ```bash
 $ rosservice call /xarm/set_tcp_offset 0 0 20 0 0 0
 ```
-&ensp;&ensp;这条命令设置了基于原始工具坐标系(x = 0 mm, y = 0 mm, z = 20 mm)的位置偏移量，还有（0 rad, 0 rad, 0 rad)的RPY姿态偏移量。***如果需要请在每次重新启动/上电控制盒时设定一次正确的偏移量，因为此设定会掉电丢失。***  
+&ensp;&ensp;这条命令设置了基于原始工具坐标系(x = 0 mm, y = 0 mm, z = 20 mm)的位置偏移量，还有（0 rad, 0 rad, 0 rad)的RPY姿态偏移量。***请注意：这里设置的TCP偏移在后续xArm Studio的操作中可能被重置（如果这个设定和studio中的默认设置不同）*** 如果需要xArm Studio和ros service配合控制机械臂，建议在xArm Studio中做好相同的默认TCP偏移设置。 
 
 #### 清除错误:
 &ensp;&ensp;有时控制器会因为掉电、位置或速度超限、规划失败等原因汇报错误，遇到这一状态需要手动解除。具体的错误代码可以在topic ***"xarm/xarm_states"*** 的信息中找到。 
@@ -345,11 +355,11 @@ $ rosrun xarm_gripper gripper_client 500 1500
 
 &ensp;&ensp;吸头开启:  
 ```bash
-$ rosservice call /xarm/vaccum_gripper_set 1
+$ rosservice call /xarm/vacuum_gripper_set 1
 ```
 &ensp;&ensp;吸头关闭:  
 ```bash
-$ rosservice call /xarm/vaccum_gripper_set 0
+$ rosservice call /xarm/vacuum_gripper_set 0
 ```
 &ensp;&ensp;正常执行服务将返回0.  
 
