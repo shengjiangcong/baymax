@@ -23,7 +23,7 @@
         * [5.7.5 Setting Tool Center Point Offset](#setting-tool-center-point-offset)  
         * [5.7.6 Clearing Errors](#clearing-errors)  
         * [5.7.7 Gripper Control(***Updated***)](#gripper-control)
-        * [5.7.8 Vacuum Gripper Control(***new***)](#vacuum-gripper-control)
+        * [5.7.8 Vaccum Gripper Control(***new***)](#vaccum-gripper-control)
         * [5.7.9 Tool Modbus communication (***new***)](#tool-modbus-communication)
 * [6. Mode Change](#6-mode-change)
     * [6.1 Mode Explanation](#61-mode-explanation)
@@ -51,7 +51,6 @@
    * Add demo to control dual xArm6 through Moveit.
    * Add xArm Gripper action control.
    * Add xArm-with-gripper Moveit development packages.
-   * Add vacuum gripper model and xArm-with-vacuum-gripper Moveit development packages (under /examples dir).
 
 # 3. Preparations before using this package
 
@@ -116,11 +115,10 @@ $ roslaunch xarm_description xarm7_rviz_display.launch
 
 ## 4.7 Run the demo in Gazebo simulator
    ```bash
-   $ roslaunch xarm_gazebo xarm7_beside_table.launch [run_demo:=true] [add_gripper:=true] [add_vacuum_gripper:=true] 
+   $ roslaunch xarm_gazebo xarm7_beside_table.launch [run_demo:=true] [add_gripper:=true]
    ```
 &ensp;&ensp;Add the "run_demo" option if you wish to see a pre-programed loop motion in action. The command trajectory is written in xarm_controller\src\sample_motion.cpp. And the trajectory in this demo is controlled by pure position interface.   
-&ensp;&ensp;Add the "add_gripper" option if you want to see the xArm Gripper attached at the tool end.  
-&ensp;&ensp;Add the "add_vacuum_gripper" option if you want to see the xArm Vacuum Gripper attached at the tool end. Please note ONLY ONE end effector can be attached.  
+&ensp;&ensp;Add the "add_gripper" option if you want to see the xArm Gripper attached at the tool end.
 
 # 5. Package description & Usage Guidance
    
@@ -158,9 +156,7 @@ $ roslaunch xarm_description xarm7_rviz_display.launch
    ```bash
    $ roslaunch xarm7_gripper_moveit_config xarm7_gripper_moveit_gazebo.launch
    ```
-   If you have a satisfied motion planned in Moveit!, hit the "Execute" button and the virtual arm in Gazebo will execute the trajectory.  
-
-   3. If **xArm vacuum gripper needs to be attached**, just replace "gripper" with "vacuum_gripper" in above gripper example.  
+   If you have a satisfied motion planned in Moveit!, hit the "Execute" button and the virtual arm in Gazebo will execute the trajectory.
 
 #### To run Moveit! motion planner to control the real xArm:  
    First make sure the xArm and the controller box are powered on, then execute:  
@@ -176,12 +172,6 @@ $ roslaunch xarm_description xarm7_rviz_display.launch
    ```
    It is better to use this package with real xArm gripper, since Moveit planner will take the gripper into account for collision detection.  
 
-#### To run Moveit! motion planner to control the real xArm with xArm Vacuum Gripper attached:  
-   First make sure the xArm and the controller box are powered on, then execute:  
-   ```bash
-   $ roslaunch xarm7_vacuum_gripper_moveit_config realMove_exec.launch robot_ip:=<your controller box LAN IP address>
-   ```
-   It is better to use this package with real xArm vacuum gripper, since Moveit planner will take the vacuum gripper into account for collision detection.  
 
 ## 5.6 xarm_planner:
 &ensp;&ensp;This implemented simple planner interface is based on move_group from Moveit! and provide ros service for users to do planning & execution based on the requested target, user can find detailed instructions on how to use it inside [***xarm_planner package***](./xarm_planner/).  
@@ -359,16 +349,16 @@ goal:
 $ rosrun xarm_gripper gripper_client 500 1500 
 ```
 
-#### Vacuum Gripper Control:
-&ensp;&ensp; If Vacuum Gripper (from UFACTORY) is attached to the tool end, the following service can be called to operate the vacuum gripper.  
+#### Vaccum Gripper Control:
+&ensp;&ensp; If Vaccum Gripper (from UFACTORY) is attached to the tool end, the following service can be called to operate the vaccum gripper.  
 
 &ensp;&ensp;To turn on:  
 ```bash
-$ rosservice call /xarm/vacuum_gripper_set 1
+$ rosservice call /xarm/vaccum_gripper_set 1
 ```
 &ensp;&ensp;To turn off:  
 ```bash
-$ rosservice call /xarm/vacuum_gripper_set 0
+$ rosservice call /xarm/vaccum_gripper_set 0
 ```
 &ensp;&ensp;0 will be returned upon successful execution.  
 

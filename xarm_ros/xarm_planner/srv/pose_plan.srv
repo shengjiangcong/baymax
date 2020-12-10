@@ -1,4 +1,5 @@
-geometry_msgs/Pose target
+geometry_msgs/Pose target_l
+geometry_msgs/Pose target_r
 
 ---
 
