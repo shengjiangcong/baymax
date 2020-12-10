@@ -15,3 +15,9 @@ controller_list:
       - R_joint4
       - R_joint5
       - R_joint6
+  - name: fake_L_gripper_controller
+    joints:
+      - L_drive_joint
+  - name: fake_R_gripper_controller
+    joints:
+      - R_drive_joint
