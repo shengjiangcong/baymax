@@ -12,16 +12,16 @@
   <xacro:include filename="$(find xarm_description)/urdf/common.gazebo.xacro" />
 
   <!-- ground instead of world, for the arms to attach -->
-  <link name="ground" />
+  <!--<link name="ground" />-->
 
   <!-- launch left arm -->
-  <xacro:xarm6_robot prefix="$(arg prefix_1)" namespace="$(arg ros_namespace)" limited="$(arg limited)" attach_to="ground" xyz="-0.5 0.09916 0" rpy="-1.57 0 -0.349"/>
+  <xacro:xarm6_robot prefix="$(arg prefix_1)" namespace="$(arg ros_namespace)" limited="$(arg limited)" attach_to="bottom_link" xyz="-0.5 0.09916 1" rpy="-1.57 0 -0.049"/>
   <xacro:if value="$(arg add_gripper)">
     <xacro:load_gripper prefix="$(arg prefix_1)" attach_to="$(arg prefix_1)link6" />
   </xacro:if>
 
   <!-- launch right arm -->
-  <xacro:xarm6_robot prefix="$(arg prefix_2)" namespace="$(arg ros_namespace)" limited="$(arg limited)" attach_to="ground" xyz="-0.5 -0.09916 0" rpy="1.57 0 0.349"/>
+  <xacro:xarm6_robot prefix="$(arg prefix_2)" namespace="$(arg ros_namespace)" limited="$(arg limited)" attach_to="bottom_link" xyz="-0.5 -0.09916 1" rpy="1.57 0 0.049"/>
   <xacro:if value="$(arg add_gripper)">
     <xacro:load_gripper prefix="$(arg prefix_2)" attach_to="$(arg prefix_2)link6" />
   </xacro:if>
@@ -73,10 +73,40 @@
   </collision>
 </link>
 
-<joint name="ground_joint" type="fixed">
-    <parent link="ground" />
+<joint name="bottom_joint" type="fixed">
+    <parent link="bottom_link" />
     <child link = "body" />
-    <origin xyz="0 0 0" rpy="0 0 0" />
+    <origin xyz="0 0 1" rpy="0 0 0" />
 </joint>
+
+    <link name="bottom_link">
+	   <inertial>
+		  <origin
+		    xyz="0 0 0"
+		    rpy="0 0 0" />
+		  <mass
+		    value="444.11" />
+		  <inertia
+		    ixx="337.5"
+		    ixy="3.3871E-16"
+		    ixz="-3.6082E-14"
+		    iyy="674.82"
+		    iyz="1.3219E-17"
+		    izz="337.5" />
+		</inertial>
+        <visual>
+              <origin xyz=" 0 0 0"  rpy="0 0 0"/>
+                  <geometry>
+                       <box size="20 20 0.02" />
+                  </geometry>
+              <material name="Hide" />
+        </visual>
+        <collision>
+            <origin xyz=" 0 0 0"  rpy="0 0 0"/>
+            <geometry>
+                <box size="20 20 0.05" />
+            </geometry>
+        </collision>
+    </link>
 
 </robot>
