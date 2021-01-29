@@ -19,10 +19,6 @@
   <!-- Load default settings for kinematics; these settings are overridden by settings in a node's namespace -->
   <group ns="$(arg robot_description)_kinematics">
     <rosparam command="load" file="$(find test_moveit_config)/config/kinematics.yaml"/>
-    <rosparam command="load" ns="L_gripper" file="/home/jcsheng/桌面/kinematics.yaml"/>
-    <rosparam command="load" ns="L_xarm" file="/home/jcsheng/桌面/kinematics.yaml"/>
-    <rosparam command="load" ns="R_gripper" file="/home/jcsheng/桌面/kinematics.yaml"/>
-    <rosparam command="load" ns="R_xarm" file="/home/jcsheng/桌面/kinematics.yaml"/>
   </group>
 
 </launch>
