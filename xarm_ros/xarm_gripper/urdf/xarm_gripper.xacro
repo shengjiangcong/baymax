@@ -1,6 +1,37 @@
 <?xml version='1.0' encoding='utf-8'?>
 <robot xmlns:xacro="http://ros.org/wiki/xacro" name="xarm_gripper">
   <xacro:include filename="$(find xarm_gripper)/urdf/xarm_gripper_model.xacro" />
-  <xacro:load_gripper />
+
+<link name="bottom_link">
+	   <inertial>
+		  <origin
+		    xyz="0 0 0"
+		    rpy="0 0 0" />
+		  <mass
+		    value="444.11" />
+		  <inertia
+		    ixx="337.5"
+		    ixy="3.3871E-16"
+		    ixz="-3.6082E-14"
+		    iyy="674.82"
+		    iyz="1.3219E-17"
+		    izz="337.5" />
+		</inertial>
+        <visual>
+              <origin xyz=" 0 0 0"  rpy="0 0 0"/>
+                  <geometry>
+                       <box size="20 20 0.02" />
+                  </geometry>
+              <material name="Hide" />
+        </visual>
+        <collision>
+            <origin xyz=" 0 0 0"  rpy="0 0 0"/>
+            <geometry>
+                <box size="20 20 0.05" />
+            </geometry>
+        </collision>
+    </link>
+
+  <xacro:load_gripper attach_to="bottom_link" rpy="0 0 0" xyz="0 0 1"/>
 
 </robot>

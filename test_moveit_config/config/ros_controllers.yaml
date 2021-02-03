@@ -69,21 +69,23 @@ L_gripper_controller:
   joints:
     - L_drive_joint
   gains:
-    L_drive_joint:
-      p: 100
-      d: 1
-      i: 1
-      i_clamp: 1
+    L_drive_joint: {p: 30.0, i: 0.1, d: 0.0, i_clamp: 0.2, antiwindup: false, publish_state: true}
+    L_left_finger_joint: {p: 30.0, i: 0.1, d: 0.0, i_clamp: 0.2, antiwindup: false, publish_state: true}
+    L_left_inner_knuckle_joint: {p: 30.0, i: 0.1, d: 0.0, i_clamp: 0.2, antiwindup: false, publish_state: true}
+    L_right_outer_knuckle_joint: {p: 30.0, i: 0.1, d: 0.0, i_clamp: 0.2, antiwindup: false, publish_state: true}
+    L_right_finger_joint: {p: 30.0, i: 0.1, d: 0.0, i_clamp: 0.2, antiwindup: false, publish_state: true}
+    L_right_inner_knuckle_joint: {p: 30.0, i: 0.1, d: 0.0, i_clamp: 0.2, antiwindup: false, publish_state: true}
 R_gripper_controller:
   type: position_controllers/JointTrajectoryController
   joints:
     - R_drive_joint
   gains:
-    R_drive_joint:
-      p: 100
-      d: 1
-      i: 1
-      i_clamp: 1
+    R_drive_joint: {p: 30.0, i: 0.1, d: 0.0, i_clamp: 0.2, antiwindup: false, publish_state: true}
+    R_left_finger_joint: {p: 30.0, i: 0.1, d: 0.0, i_clamp: 0.2, antiwindup: false, publish_state: true}
+    R_left_inner_knuckle_joint: {p: 30.0, i: 0.1, d: 0.0, i_clamp: 0.2, antiwindup: false, publish_state: true}
+    R_right_outer_knuckle_joint: {p: 30.0, i: 0.1, d: 0.0, i_clamp: 0.2, antiwindup: false, publish_state: true}
+    R_right_finger_joint: {p: 30.0, i: 0.1, d: 0.0, i_clamp: 0.2, antiwindup: false, publish_state: true}
+    R_right_inner_knuckle_joint: {p: 30.0, i: 0.1, d: 0.0, i_clamp: 0.2, antiwindup: false, publish_state: true}
 L_xarm_controller:
   type: position_controllers/JointTrajectoryController
   joints:

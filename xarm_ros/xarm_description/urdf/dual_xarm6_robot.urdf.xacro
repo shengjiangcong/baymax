@@ -17,13 +17,13 @@
   <!-- launch left arm -->
   <xacro:xarm6_robot prefix="$(arg prefix_1)" namespace="$(arg ros_namespace)" limited="$(arg limited)" attach_to="bottom_link" xyz="-0.5 0.09916 1" rpy="-1.57 0 -0.049"/>
   <xacro:if value="$(arg add_gripper)">
-    <xacro:load_gripper prefix="$(arg prefix_1)" attach_to="$(arg prefix_1)link6" />
+    <xacro:load_gripper prefix="$(arg prefix_1)" attach_to="$(arg prefix_1)link6" rpy="0 0 0" xyz="0 0 0"/>
   </xacro:if>
 
   <!-- launch right arm -->
   <xacro:xarm6_robot prefix="$(arg prefix_2)" namespace="$(arg ros_namespace)" limited="$(arg limited)" attach_to="bottom_link" xyz="-0.5 -0.09916 1" rpy="1.57 0 0.049"/>
   <xacro:if value="$(arg add_gripper)">
-    <xacro:load_gripper prefix="$(arg prefix_2)" attach_to="$(arg prefix_2)link6" />
+    <xacro:load_gripper prefix="$(arg prefix_2)" attach_to="$(arg prefix_2)link6" rpy="0 0 0" xyz="0 0 0"/>
   </xacro:if>
 
   <gazebo>
