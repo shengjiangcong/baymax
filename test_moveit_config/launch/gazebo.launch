@@ -6,7 +6,7 @@
 
   <!-- startup simulated world -->
   <include file="$(find test_moveit_config)/launch/empty_world.launch">
-    <arg name="world_name" value="$(find test_moveit_config)/world/aa.world"/>
+    <arg name="world_name" value="$(find test_moveit_config)/world/ddddd.world"/>
     <arg name="paused" value="$(arg paused)"/>
     <arg name="gui" value="$(arg gazebo_gui)"/>
   </include>

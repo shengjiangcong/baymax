@@ -1,0 +1,2978 @@
+<sdf version='1.6'>
+  <world name='default'>
+    <light name='sun' type='directional'>
+      <cast_shadows>1</cast_shadows>
+      <pose frame=''>0 0 10 0 -0 0</pose>
+      <diffuse>0.8 0.8 0.8 1</diffuse>
+      <specular>0.2 0.2 0.2 1</specular>
+      <attenuation>
+        <range>1000</range>
+        <constant>0.9</constant>
+        <linear>0.01</linear>
+        <quadratic>0.001</quadratic>
+      </attenuation>
+      <direction>-0.5 0.1 -0.9</direction>
+    </light>
+    <model name='ground_plane'>
+      <static>1</static>
+      <link name='link'>
+        <collision name='collision'>
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>100 100</size>
+            </plane>
+          </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>100</mu>
+                <mu2>50</mu2>
+              </ode>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='visual'>
+          <cast_shadows>0</cast_shadows>
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>100 100</size>
+            </plane>
+          </geometry>
+          <material>
+            <script>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+              <name>Gazebo/Grey</name>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+    </model>
+    <gravity>0 0 -9.8</gravity>
+    <magnetic_field>6e-06 2.3e-05 -4.2e-05</magnetic_field>
+    <atmosphere type='adiabatic'/>
+    <physics name='default_physics' default='0' type='ode'>
+      <max_step_size>0.001</max_step_size>
+      <real_time_factor>1</real_time_factor>
+      <real_time_update_rate>1000</real_time_update_rate>
+    </physics>
+    <scene>
+      <ambient>0.4 0.4 0.4 1</ambient>
+      <background>0.7 0.7 0.7 1</background>
+      <shadows>1</shadows>
+    </scene>
+    <wind/>
+    <spherical_coordinates>
+      <surface_model>EARTH_WGS84</surface_model>
+      <latitude_deg>0</latitude_deg>
+      <longitude_deg>0</longitude_deg>
+      <elevation>0</elevation>
+      <heading_deg>0</heading_deg>
+    </spherical_coordinates>
+    <model name='table'>
+      <link name='table_box_link'>
+        <inertial>
+          <mass>1</mass>
+          <inertia>
+            <ixx>0.166667</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.166667</iyy>
+            <iyz>0</iyz>
+            <izz>0.166667</izz>
+          </inertia>
+        </inertial>
+        <self_collide>0</self_collide>
+        <kinematic>0</kinematic>
+        <enable_wind>0</enable_wind>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <visual name='visual'>
+          <geometry>
+            <box>
+              <size>0.3 0.3 0.2</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Black</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+            <shader type='pixel'/>
+          </material>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <transparency>0</transparency>
+          <cast_shadows>1</cast_shadows>
+        </visual>
+        <collision name='collision'>
+          <laser_retro>0</laser_retro>
+          <max_contacts>10</max_contacts>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <geometry>
+            <box>
+              <size>0.3 0.3 0.2</size>
+            </box>
+          </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>0.6</mu>
+                <mu2>0.6</mu2>
+                <fdir1>0 0 0</fdir1>
+                <slip1>0</slip1>
+                <slip2>0</slip2>
+              </ode>
+              <torsional>
+                <coefficient>1</coefficient>
+                <patch_radius>0</patch_radius>
+                <surface_radius>0</surface_radius>
+                <use_patch_radius>1</use_patch_radius>
+                <ode>
+                  <slip>0</slip>
+                </ode>
+              </torsional>
+            </friction>
+            <bounce>
+              <restitution_coefficient>0</restitution_coefficient>
+              <threshold>1e+06</threshold>
+            </bounce>
+            <contact>
+              <collide_without_contact>0</collide_without_contact>
+              <collide_without_contact_bitmask>1</collide_without_contact_bitmask>
+              <collide_bitmask>1</collide_bitmask>
+              <ode>
+                <soft_cfm>0</soft_cfm>
+                <soft_erp>0.2</soft_erp>
+                <kp>1e+13</kp>
+                <kd>1</kd>
+                <max_vel>0.01</max_vel>
+                <min_depth>0</min_depth>
+              </ode>
+              <bullet>
+                <split_impulse>1</split_impulse>
+                <split_impulse_penetration_threshold>-0.01</split_impulse_penetration_threshold>
+                <soft_cfm>0</soft_cfm>
+                <soft_erp>0.2</soft_erp>
+                <kp>1e+13</kp>
+                <kd>1</kd>
+              </bullet>
+            </contact>
+          </surface>
+        </collision>
+      </link>
+      <static>1</static>
+      <allow_auto_disable>1</allow_auto_disable>
+      <pose frame=''>-0.209446 0.198974 0 0 -0 0</pose>
+    </model>
+    <state world_name='default'>
+      <sim_time>156 711000000</sim_time>
+      <real_time>331 402775283</real_time>
+      <wall_time>1614321932 240079746</wall_time>
+      <iterations>49304</iterations>
+      <model name='coke_canbox_clone'>
+        <pose frame=''>-0.065822 0.500517 0.516267 -0.017245 -0.063724 -0.000159</pose>
+        <scale>1 1 1</scale>
+        <link name='coke_can'>
+          <pose frame=''>-0.065822 0.500517 0.516267 -0.017245 -0.063724 -0.000159</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>-0.000519 -0.000257 -3e-06 -0.003099 0.006206 0.000533</acceleration>
+          <wrench>-1e-06 -0 -0 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='coke_canbox_clone_clone'>
+        <pose frame=''>-0.06855 -0.003158 0.516232 -0.013694 -0.061589 -0.000281</pose>
+        <scale>1 1 1</scale>
+        <link name='coke_can'>
+          <pose frame=''>-0.06855 -0.003158 0.516232 -0.013694 -0.061589 -0.000281</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>-2e-06 -2.2e-05 -1e-06 -0.000259 2.6e-05 1.4e-05</acceleration>
+          <wrench>-0 -0 -0 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='ground_plane'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <scale>1 1 1</scale>
+        <link name='link'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='robot'>
+        <pose frame=''>0.00151 0.000337 0.024994 1e-06 -0 3.3e-05</pose>
+        <scale>1 1 1</scale>
+        <link name='L_left_finger'>
+          <pose frame=''>-0.291211 0.100151 1.09538 1.57177 8.2e-05 -0.048897</pose>
+          <velocity>0.001301 -0.006829 -0.018043 0.090746 0.035547 -0.018348</velocity>
+          <acceleration>-3.16103 -6.8352 -20.6162 3.07497 0.275152 -0.02243</acceleration>
+          <wrench>-0.152691 -0.330167 -0.995846 0 -0 0</wrench>
+        </link>
+        <link name='L_left_inner_knuckle'>
+          <pose frame=''>-0.289892 0.127202 1.04495 1.5717 7.9e-05 -0.048911</pose>
+          <velocity>-6.7e-05 -0.002799 -0.012402 0.022458 0.037741 -0.010948</velocity>
+          <acceleration>-2.35044 -4.52585 -9.43154 0.572816 0.962026 2.35868</acceleration>
+          <wrench>-0.05409 -0.104152 -0.217044 0 -0 0</wrench>
+        </link>
+        <link name='L_left_outer_knuckle'>
+          <pose frame=''>-0.289158 0.142171 1.05996 1.57181 7.8e-05 -0.048896</pose>
+          <velocity>0.000736 -0.003961 -0.0136 0.130202 0.036218 -0.019519</velocity>
+          <acceleration>-2.00517 -9.88155 -13.6161 -0.116136 -0.935936 3.10644</acceleration>
+          <wrench>-0.06741 -0.332198 -0.457747 0 -0 0</wrench>
+        </link>
+        <link name='L_link1'>
+          <pose frame=''>-0.485424 0.366161 1.0252 -1.57004 0.000136 -0.048881</pose>
+          <velocity>-9.8e-05 -0.00077 -0.004907 0.026158 0.013167 -0.001738</velocity>
+          <acceleration>0.65413 0.715893 -9.93763 3.02319 -0.552906 2.61713</acceleration>
+          <wrench>1.41292 1.54633 -21.4653 0 -0 0</wrench>
+        </link>
+        <link name='L_link2'>
+          <pose frame=''>-0.485429 0.366161 1.02519 -3.14082 0.000118 -0.048913</pose>
+          <velocity>0.000243 4.6e-05 -0.003129 0.018442 0.018968 -0.007645</velocity>
+          <acceleration>2.93499 1.7146 2.49096 -2.29957 0.199675 3.1189</acceleration>
+          <wrench>5.01883 2.93196 4.25954 0 -0 0</wrench>
+        </link>
+        <link name='L_link3'>
+          <pose frame=''>-0.418086 0.647707 1.0254 -3.14076 0.000109 -0.048936</pose>
+          <velocity>0.002445 -0.00081 0.002843 0.019926 0.02641 -0.005846</velocity>
+          <acceleration>1.7938 -0.445048 6.51711 0.373199 0.245407 -2.61713</acceleration>
+          <wrench>2.48262 -0.615947 9.01968 0 -0 0</wrench>
+        </link>
+        <link name='L_link4'>
+          <pose frame=''>-0.357439 0.301829 1.02512 1.57165 0.000106 -0.048937</pose>
+          <velocity>0.001116 -0.001282 -0.004697 0.021 0.038217 -0.007733</velocity>
+          <acceleration>1.10594 -2.17759 0.827491 1.11228 0.881289 -0.985285</acceleration>
+          <wrench>1.23312 -2.42802 0.922652 0 -0 0</wrench>
+        </link>
+        <link name='L_link5'>
+          <pose frame=''>-0.357437 0.301828 1.02511 -3.14068 7.3e-05 -0.048906</pose>
+          <velocity>0.001179 -0.001506 -0.004705 0.03251 0.03871 -0.012442</velocity>
+          <acceleration>0.785701 -2.33027 -0.80419 -1.35083 -0.457564 2.22657</acceleration>
+          <wrench>1.00177 -2.9711 -1.02534 0 -0 0</wrench>
+        </link>
+        <link name='L_link6'>
+          <pose frame=''>-0.28627 0.20123 1.02502 1.57171 7.5e-05 -0.048907</pose>
+          <velocity>0.000123 -0.002256 -0.009983 0.033783 0.038933 -0.012023</velocity>
+          <acceleration>-0.832207 -2.56113 -6.08852 -0.953978 0.512465 -2.03214</acceleration>
+          <wrench>-0.5419 -1.66771 -3.9646 0 -0 0</wrench>
+        </link>
+        <link name='L_right_finger'>
+          <pose frame=''>-0.291219 0.100279 0.954463 1.57174 0.000112 -0.048955</pose>
+          <velocity>-0.002536 -0.001403 -0.011096 0.005666 0.016878 0.01933</velocity>
+          <acceleration>2.55503 -1.1978 -7.11237 -2.78142 -0.132475 -0.214619</acceleration>
+          <wrench>0.123418 -0.057859 -0.343556 0 -0 0</wrench>
+        </link>
+        <link name='L_right_inner_knuckle'>
+          <pose frame=''>-0.289892 0.127238 1.00495 1.57169 7e-05 -0.04891</pose>
+          <velocity>-0.001701 -0.001624 -0.012167 0.016736 0.042358 -0.009778</velocity>
+          <acceleration>-1.80472 -0.740623 -8.81677 -0.719798 -1.27147 -2.35511</acceleration>
+          <wrench>-0.041532 -0.017044 -0.2029 0 -0 0</wrench>
+        </link>
+        <link name='L_right_outer_knuckle'>
+          <pose frame=''>-0.28916 0.142234 0.989967 1.57174 8.7e-05 -0.048969</pose>
+          <velocity>-0.001812 -0.001384 -0.011322 -0.007007 0.03404 0.028639</velocity>
+          <acceleration>1.13586 -1.37842 -6.18364 -2.39538 1.31048 0.33694</acceleration>
+          <wrench>0.038186 -0.04634 -0.207882 0 -0 0</wrench>
+        </link>
+        <link name='R_left_finger'>
+          <pose frame=''>-0.291182 -0.099619 0.954478 -1.5715 6.2e-05 0.0489</pose>
+          <velocity>0.002864 0.007085 0.017576 0.139603 -0.014955 -0.003145</velocity>
+          <acceleration>-3.70527 10.764 40.3688 -1.68327 0.880037 -1.48683</acceleration>
+          <wrench>-0.17898 0.519947 1.94997 0 -0 0</wrench>
+        </link>
+        <link name='R_left_inner_knuckle'>
+          <pose frame=''>-0.289858 -0.126587 1.00496 -1.57161 9.6e-05 0.048937</pose>
+          <velocity>0.002242 0.000744 0.010426 0.04884 -0.008578 0.001935</velocity>
+          <acceleration>-2.55135 6.64711 24.3494 1.75073 -1.42479 -1.7235</acceleration>
+          <wrench>-0.058713 0.152967 0.560342 0 -0 0</wrench>
+        </link>
+        <link name='R_left_outer_knuckle'>
+          <pose frame=''>-0.289125 -0.14158 0.989974 -1.57146 8.2e-05 0.048889</pose>
+          <velocity>0.002536 0.002691 0.011066 0.186269 -0.008736 -0.00551</velocity>
+          <acceleration>-1.71867 14.9871 27.7665 1.16809 -0.34663 -2.17694</acceleration>
+          <wrench>-0.057778 0.503837 0.933456 0 -0 0</wrench>
+        </link>
+        <link name='R_link1'>
+          <pose frame=''>-0.485396 -0.36552 1.0252 1.56998 2.5e-05 0.049027</pose>
+          <velocity>-0.000319 -0.001097 -0.005682 -0.001508 -0.005203 -0.001578</velocity>
+          <acceleration>-0.531487 -1.11875 -9.90409 3.08625 0.020322 2.63817</acceleration>
+          <wrench>-1.14801 -2.4165 -21.3928 0 -0 0</wrench>
+        </link>
+        <link name='R_link2'>
+          <pose frame=''>-0.485399 -0.365521 1.02519 -0.000771 7.6e-05 0.04897</pose>
+          <velocity>0.000145 -0.000956 -0.005675 0.008006 -0.009319 -0.001296</velocity>
+          <acceleration>1.27769 -1.43215 -13.4171 -0.155443 -0.873242 -0.531806</acceleration>
+          <wrench>2.18485 -2.44897 -22.9432 0 -0 0</wrench>
+        </link>
+        <link name='R_link3'>
+          <pose frame=''>-0.418036 -0.647062 1.02538 -0.000741 8.5e-05 0.048977</pose>
+          <velocity>8.6e-05 -0.001274 -0.004092 0.005889 -0.005481 -0.003086</velocity>
+          <acceleration>1.19798 -0.820042 -6.41558 -0.627647 -0.641743 2.49139</acceleration>
+          <wrench>1.658 -1.13494 -8.87917 0 -0 0</wrench>
+        </link>
+        <link name='R_link4'>
+          <pose frame=''>-0.357396 -0.30118 1.02511 -1.57163 6.3e-05 0.048959</pose>
+          <velocity>0.002144 -0.000991 -0.000883 0.017603 -0.00474 -0.002886</velocity>
+          <acceleration>1.15697 1.13088 -2.87157 2.04065 1.06347 0.107047</acceleration>
+          <wrench>1.29002 1.26093 -3.2018 0 -0 0</wrench>
+        </link>
+        <link name='R_link5'>
+          <pose frame=''>-0.357396 -0.301181 1.02511 -0.000824 9.8e-05 0.048936</pose>
+          <velocity>0.002021 -0.000605 0.000881 0.014487 -0.00247 -0.003287</velocity>
+          <acceleration>-0.164548 1.21048 3.04402 0.407056 1.19406 -1.35572</acceleration>
+          <wrench>-0.209798 1.54336 3.88113 0 -0 0</wrench>
+        </link>
+        <link name='R_link6'>
+          <pose frame=''>-0.286232 -0.20058 1.02502 -1.57161 9.5e-05 0.048937</pose>
+          <velocity>0.002395 -0.000759 0.005064 0.04804 -0.011231 0.00346</velocity>
+          <acceleration>-2.0276 1.47724 14.7554 2.91906 0.850089 1.10338</acceleration>
+          <wrench>-1.32029 0.96192 9.60811 0 -0 0</wrench>
+        </link>
+        <link name='R_right_finger'>
+          <pose frame=''>-0.291176 -0.099515 1.09541 -1.5713 7.1e-05 0.048969</pose>
+          <velocity>0.004996 -0.00483 0.014229 0.079199 0.052655 -0.074041</velocity>
+          <acceleration>2.33117 -5.66183 36.7529 -3.03532 -0.293419 0.671568</acceleration>
+          <wrench>0.112605 -0.273489 1.77531 0 -0 0</wrench>
+        </link>
+        <link name='R_right_inner_knuckle'>
+          <pose frame=''>-0.289856 -0.126556 1.04496 -1.57161 9.3e-05 0.048936</pose>
+          <velocity>0.001883 -0.001933 0.009977 0.047506 -0.011974 0.001847</velocity>
+          <acceleration>-4.97698 -3.14589 23.7836 1.4279 0.471288 -2.92827</acceleration>
+          <wrench>-0.114535 -0.072396 0.547331 0 -0 0</wrench>
+        </link>
+        <link name='R_right_outer_knuckle'>
+          <pose frame=''>-0.289121 -0.141529 1.05997 -1.57157 5.5e-05 0.04892</pose>
+          <velocity>0.002685 -0.005921 0.010942 -0.041667 0.085279 0.048218</velocity>
+          <acceleration>-0.801071 -8.2208 22.5527 1.64648 -1.49088 -0.098004</acceleration>
+          <wrench>-0.02693 -0.276367 0.758178 0 -0 0</wrench>
+        </link>
+        <link name='bottom_link'>
+          <pose frame=''>0.00151 0.000337 0.024994 1e-06 -0 3.3e-05</pose>
+          <velocity>1.7e-05 6.5e-05 -0.005531 0.000808 -4.5e-05 0</velocity>
+          <acceleration>-0.031212 -0.01089 -10.0047 0.445612 -0.078619 -0.002792</acceleration>
+          <wrench>-14.6612 -5.11532 -4699.5 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='table'>
+        <pose frame=''>0.01 0.01 0.5 0 -0 0</pose>
+        <scale>1 1 1</scale>
+        <link name='table_box_link'>
+          <pose frame=''>0.01 0.01 0.5 0 -0 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='table_clone'>
+        <pose frame=''>-0.026335 0.5 0.5 0 -0 0</pose>
+        <scale>1 1 1</scale>
+        <link name='table_box_link'>
+          <pose frame=''>-0.026335 0.5 0.5 0 -0 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='table_clone_0'>
+        <pose frame=''>0.00513 -0.5 0.5 0 -0 0</pose>
+        <scale>1 1 1</scale>
+        <link name='table_box_link'>
+          <pose frame=''>0.00513 -0.5 0.5 0 -0 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+      </model>
+      <light name='sun'>
+        <pose frame=''>0 0 10 0 -0 0</pose>
+      </light>
+    </state>
+    <gui fullscreen='0'>
+      <camera name='user_camera'>
+        <pose frame=''>2.42438 0.256549 2.07758 0 0.341797 -3.07899</pose>
+        <view_controller>orbit</view_controller>
+        <projection_type>perspective</projection_type>
+      </camera>
+    </gui>
+    <model name='robot'>
+      <link name='bottom_link'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <inertial>
+          <pose frame=''>-0.002294 -0.016387 0.051236 0 -0 0</pose>
+          <mass>469.73</mass>
+          <inertia>
+            <ixx>363.512</ixx>
+            <ixy>0.664913</ixy>
+            <ixz>1.14882</ixz>
+            <iyy>698.388</iyy>
+            <iyz>6.72656</iyz>
+            <izz>343.553</izz>
+          </inertia>
+        </inertial>
+        <collision name='bottom_link_collision'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <geometry>
+            <box>
+              <size>20 20 0.05</size>
+            </box>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <collision name='bottom_link_fixed_joint_lump__L_link_base_collision_1'>
+          <pose frame=''>-0.5 0.09916 1 -1.57 -0 -0.049</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/home/jcsheng/baymax_gazebo_ws/src/baymax/xarm_ros/xarm_description/meshes/xarm6/visual/base.stl</uri>
+            </mesh>
+          </geometry>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <friction>
+              <ode/>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <collision name='bottom_link_fixed_joint_lump__R_link_base_collision_2'>
+          <pose frame=''>-0.5 -0.09916 1 1.57 -0 0.049</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/home/jcsheng/baymax_gazebo_ws/src/baymax/xarm_ros/xarm_description/meshes/xarm6/visual/base.stl</uri>
+            </mesh>
+          </geometry>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <friction>
+              <ode/>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <collision name='bottom_link_fixed_joint_lump__body_collision_3'>
+          <pose frame=''>-0.5 -0.09916 1 1.57 0 0.349</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/home/jcsheng/baymax_gazebo_ws/src/baymax/xarm_ros/xarm_planner/meshes/body.stl</uri>
+            </mesh>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='bottom_link_visual'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <geometry>
+            <box>
+              <size>20 20 0.02</size>
+            </box>
+          </geometry>
+        </visual>
+        <visual name='bottom_link_fixed_joint_lump__L_link_base_visual_1'>
+          <pose frame=''>-0.5 0.09916 1 -1.57 -0 -0.049</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/home/jcsheng/baymax_gazebo_ws/src/baymax/xarm_ros/xarm_description/meshes/xarm6/visual/base.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <uri>__default__</uri>
+              <name>__default__</name>
+            </script>
+          </material>
+        </visual>
+        <visual name='bottom_link_fixed_joint_lump__R_link_base_visual_2'>
+          <pose frame=''>-0.5 -0.09916 1 1.57 -0 0.049</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/home/jcsheng/baymax_gazebo_ws/src/baymax/xarm_ros/xarm_description/meshes/xarm6/visual/base.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <uri>__default__</uri>
+              <name>__default__</name>
+            </script>
+          </material>
+        </visual>
+        <visual name='bottom_link_fixed_joint_lump__body_visual_3'>
+          <pose frame=''>-0.5 -0.09916 1 1.57 0 0.349</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/home/jcsheng/baymax_gazebo_ws/src/baymax/xarm_ros/xarm_planner/meshes/body.stl</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <velocity_decay/>
+        <gravity>1</gravity>
+        <velocity_decay/>
+        <self_collide>1</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <link name='L_link1'>
+        <pose frame=''>-0.486922 0.365839 1.00021 -1.57 -0 -0.049</pose>
+        <inertial>
+          <pose frame=''>-0.002 0.02692 -0.01332 0 -0 0</pose>
+          <mass>2.16</mass>
+          <inertia>
+            <ixx>0.00539427</ixx>
+            <ixy>1.095e-05</ixy>
+            <ixz>1.635e-06</ixz>
+            <iyy>0.0048979</iyy>
+            <iyz>0.000793</iyz>
+            <izz>0.00311573</izz>
+          </inertia>
+        </inertial>
+        <collision name='L_link1_collision'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/home/jcsheng/baymax_gazebo_ws/src/baymax/xarm_ros/xarm_description/meshes/xarm6/visual/link1.stl</uri>
+            </mesh>
+          </geometry>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <friction>
+              <ode/>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='L_link1_visual'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/home/jcsheng/baymax_gazebo_ws/src/baymax/xarm_ros/xarm_description/meshes/xarm6/visual/link1.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <uri>__default__</uri>
+              <name>__default__</name>
+            </script>
+          </material>
+        </visual>
+        <gravity>1</gravity>
+        <velocity_decay/>
+        <self_collide>1</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <joint name='L_joint1' type='revolute'>
+        <child>L_link1</child>
+        <parent>bottom_link</parent>
+        <axis>
+          <xyz>0.04898 0.998799 0.000796</xyz>
+          <limit>
+            <lower>-6.28319</lower>
+            <upper>6.28319</upper>
+            <effort>50</effort>
+            <velocity>3.14</velocity>
+          </limit>
+          <dynamics>
+            <damping>1</damping>
+            <friction>1</friction>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+          <use_parent_model_frame>1</use_parent_model_frame>
+        </axis>
+      </joint>
+      <link name='L_link2'>
+        <pose frame=''>-0.486922 0.365839 1.00021 -3.1408 -0 -0.049</pose>
+        <inertial>
+          <pose frame=''>0.03531 -0.21398 0.03386 0 -0 0</pose>
+          <mass>1.71</mass>
+          <inertia>
+            <ixx>0.0248674</ixx>
+            <ixy>-0.00430651</ixy>
+            <ixz>-0.00067797</ixz>
+            <iyy>0.00485548</iyy>
+            <iyz>0.00457245</iyz>
+            <izz>0.0238783</izz>
+          </inertia>
+        </inertial>
+        <collision name='L_link2_collision'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/home/jcsheng/baymax_gazebo_ws/src/baymax/xarm_ros/xarm_description/meshes/xarm6/visual/link2.stl</uri>
+            </mesh>
+          </geometry>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <friction>
+              <ode/>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='L_link2_visual'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/home/jcsheng/baymax_gazebo_ws/src/baymax/xarm_ros/xarm_description/meshes/xarm6/visual/link2.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <uri>__default__</uri>
+              <name>__default__</name>
+            </script>
+          </material>
+        </visual>
+        <gravity>1</gravity>
+        <velocity_decay/>
+        <self_collide>1</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <joint name='L_joint2' type='revolute'>
+        <child>L_link2</child>
+        <parent>L_link1</parent>
+        <axis>
+          <xyz>3.9e-05 0.000792 -1</xyz>
+          <limit>
+            <lower>-2.059</lower>
+            <upper>2.0944</upper>
+            <effort>50</effort>
+            <velocity>3.14</velocity>
+          </limit>
+          <dynamics>
+            <damping>1</damping>
+            <friction>1</friction>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+          <use_parent_model_frame>1</use_parent_model_frame>
+        </axis>
+      </joint>
+      <link name='L_link3'>
+        <pose frame=''>-0.419552 0.647377 1.00044 -3.1408 -0 -0.049</pose>
+        <inertial>
+          <pose frame=''>0.06781 0.10749 0.01457 0 -0 0</pose>
+          <mass>1.384</mass>
+          <inertia>
+            <ixx>0.0053694</ixx>
+            <ixy>0.0014185</ixy>
+            <ixz>-0.00092094</ixz>
+            <iyy>0.0032423</iyy>
+            <iyz>-0.00169178</iyz>
+            <izz>0.00501731</izz>
+          </inertia>
+        </inertial>
+        <collision name='L_link3_collision'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/home/jcsheng/baymax_gazebo_ws/src/baymax/xarm_ros/xarm_description/meshes/xarm6/visual/link3.stl</uri>
+            </mesh>
+          </geometry>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <friction>
+              <ode/>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='L_link3_visual'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/home/jcsheng/baymax_gazebo_ws/src/baymax/xarm_ros/xarm_description/meshes/xarm6/visual/link3.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <uri>__default__</uri>
+              <name>__default__</name>
+            </script>
+          </material>
+        </visual>
+        <gravity>1</gravity>
+        <velocity_decay/>
+        <self_collide>1</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <joint name='L_joint3' type='revolute'>
+        <child>L_link3</child>
+        <parent>L_link2</parent>
+        <axis>
+          <xyz>3.9e-05 0.000792 -1</xyz>
+          <limit>
+            <lower>-3.927</lower>
+            <upper>0.19198</upper>
+            <effort>32</effort>
+            <velocity>3.14</velocity>
+          </limit>
+          <dynamics>
+            <damping>1</damping>
+            <friction>1</friction>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+          <use_parent_model_frame>1</use_parent_model_frame>
+        </axis>
+      </joint>
+      <link name='L_link4'>
+        <pose frame=''>-0.35892 0.301493 1.00017 1.57159 -0 -0.049</pose>
+        <inertial>
+          <pose frame=''>-0.00021 0.02578 -0.02538 0 -0 0</pose>
+          <mass>1.115</mass>
+          <inertia>
+            <ixx>0.00439263</ixx>
+            <ixy>5.028e-05</ixy>
+            <ixz>1.374e-05</ixz>
+            <iyy>0.0040077</iyy>
+            <iyz>0.00045338</iyz>
+            <izz>0.00110321</izz>
+          </inertia>
+        </inertial>
+        <collision name='L_link4_collision'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/home/jcsheng/baymax_gazebo_ws/src/baymax/xarm_ros/xarm_description/meshes/xarm6/visual/link4.stl</uri>
+            </mesh>
+          </geometry>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <friction>
+              <ode/>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='L_link4_visual'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/home/jcsheng/baymax_gazebo_ws/src/baymax/xarm_ros/xarm_description/meshes/xarm6/visual/link4.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <uri>__default__</uri>
+              <name>__default__</name>
+            </script>
+          </material>
+        </visual>
+        <gravity>1</gravity>
+        <velocity_decay/>
+        <self_collide>1</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <joint name='L_joint4' type='revolute'>
+        <child>L_link4</child>
+        <parent>L_link3</parent>
+        <axis>
+          <xyz>-0.04898 -0.998799 -0.000789</xyz>
+          <limit>
+            <lower>-6.28319</lower>
+            <upper>6.28319</upper>
+            <effort>32</effort>
+            <velocity>3.14</velocity>
+          </limit>
+          <dynamics>
+            <damping>1</damping>
+            <friction>1</friction>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+          <use_parent_model_frame>1</use_parent_model_frame>
+        </axis>
+      </joint>
+      <link name='L_link5'>
+        <pose frame=''>-0.35892 0.301493 1.00017 -3.1408 -0 -0.049</pose>
+        <inertial>
+          <pose frame=''>0.05428 0.01781 0.00543 0 -0 0</pose>
+          <mass>1.275</mass>
+          <inertia>
+            <ixx>0.00120276</ixx>
+            <ixy>0.000492428</ixy>
+            <ixz>-0.00039147</ixz>
+            <iyy>0.0022876</iyy>
+            <iyz>-0.0001235</iyz>
+            <izz>0.0026866</izz>
+          </inertia>
+        </inertial>
+        <collision name='L_link5_collision'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/home/jcsheng/baymax_gazebo_ws/src/baymax/xarm_ros/xarm_description/meshes/xarm6/visual/link5.stl</uri>
+            </mesh>
+          </geometry>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <friction>
+              <ode/>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='L_link5_visual'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/home/jcsheng/baymax_gazebo_ws/src/baymax/xarm_ros/xarm_description/meshes/xarm6/visual/link5.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <uri>__default__</uri>
+              <name>__default__</name>
+            </script>
+          </material>
+        </visual>
+        <gravity>1</gravity>
+        <velocity_decay/>
+        <self_collide>1</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <joint name='L_joint5' type='revolute'>
+        <child>L_link5</child>
+        <parent>L_link4</parent>
+        <axis>
+          <xyz>3.9e-05 0.000792 -1</xyz>
+          <limit>
+            <lower>-1.69297</lower>
+            <upper>3.14159</upper>
+            <effort>32</effort>
+            <velocity>3.14</velocity>
+          </limit>
+          <dynamics>
+            <damping>1</damping>
+            <friction>1</friction>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+          <use_parent_model_frame>1</use_parent_model_frame>
+        </axis>
+      </joint>
+      <link name='L_link6'>
+        <pose frame=''>-0.287763 0.200887 1.00009 1.57159 -0 -0.049</pose>
+        <inertial>
+          <pose frame=''>-0.000545 -0.001431 0.038342 0 -0 0</pose>
+          <mass>0.65116</mass>
+          <inertia>
+            <ixx>0.000818795</ixx>
+            <ixy>2.44297e-07</ixy>
+            <ixz>6.08903e-06</ixz>
+            <iyy>0.000680747</iyy>
+            <iyz>2.08511e-06</iyz>
+            <izz>0.000336739</izz>
+          </inertia>
+        </inertial>
+        <collision name='L_link6_collision'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/home/jcsheng/baymax_gazebo_ws/src/baymax/xarm_ros/xarm_description/meshes/xarm6/visual/link6.stl</uri>
+            </mesh>
+          </geometry>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <friction>
+              <ode/>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <collision name='L_link6_fixed_joint_lump__L_xarm_gripper_base_link_collision_1'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/home/jcsheng/baymax_gazebo_ws/src/baymax/xarm_ros/xarm_gripper/meshes/base_link.STL</uri>
+            </mesh>
+          </geometry>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <friction>
+              <ode/>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='L_link6_visual'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/home/jcsheng/baymax_gazebo_ws/src/baymax/xarm_ros/xarm_description/meshes/xarm6/visual/link6.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <uri>__default__</uri>
+              <name>__default__</name>
+            </script>
+          </material>
+        </visual>
+        <visual name='L_link6_fixed_joint_lump__L_xarm_gripper_base_link_visual_1'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/home/jcsheng/baymax_gazebo_ws/src/baymax/xarm_ros/xarm_gripper/meshes/base_link.STL</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <uri>__default__</uri>
+              <name>__default__</name>
+            </script>
+          </material>
+        </visual>
+        <velocity_decay/>
+        <gravity>1</gravity>
+        <velocity_decay/>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <joint name='L_joint6' type='revolute'>
+        <child>L_link6</child>
+        <parent>L_link5</parent>
+        <axis>
+          <xyz>-0.04898 -0.998799 -0.000789</xyz>
+          <limit>
+            <lower>-6.28319</lower>
+            <upper>6.28319</upper>
+            <effort>20</effort>
+            <velocity>3.14</velocity>
+          </limit>
+          <dynamics>
+            <damping>1</damping>
+            <friction>1</friction>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+          <use_parent_model_frame>1</use_parent_model_frame>
+        </axis>
+      </joint>
+      <link name='L_left_outer_knuckle'>
+        <pose frame=''>-0.290659 0.141832 1.03504 1.57159 -0 -0.049</pose>
+        <inertial>
+          <pose frame=''>0 0.021559 0.015181 0 -0 0</pose>
+          <mass>0.033618</mass>
+          <inertia>
+            <ixx>1.9111e-05</ixx>
+            <ixy>-1.8803e-17</ixy>
+            <ixz>-1.1002e-17</ixz>
+            <iyy>6.6256e-06</iyy>
+            <iyz>-7.3008e-06</iyz>
+            <izz>1.3185e-05</izz>
+          </inertia>
+        </inertial>
+        <collision name='L_left_outer_knuckle_collision'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/home/jcsheng/baymax_gazebo_ws/src/baymax/xarm_ros/xarm_gripper/meshes/left_outer_knuckle.STL</uri>
+            </mesh>
+          </geometry>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <friction>
+              <ode/>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='L_left_outer_knuckle_visual'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/home/jcsheng/baymax_gazebo_ws/src/baymax/xarm_ros/xarm_gripper/meshes/left_outer_knuckle.STL</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <uri>__default__</uri>
+              <name>__default__</name>
+            </script>
+          </material>
+        </visual>
+        <gravity>1</gravity>
+        <velocity_decay/>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <joint name='L_drive_joint' type='revolute'>
+        <child>L_left_outer_knuckle</child>
+        <parent>L_link6</parent>
+        <axis>
+          <xyz>0.9988 -0.04898 0</xyz>
+          <limit>
+            <lower>0</lower>
+            <upper>0.85</upper>
+            <effort>50</effort>
+            <velocity>2</velocity>
+          </limit>
+          <dynamics>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+          <use_parent_model_frame>1</use_parent_model_frame>
+        </axis>
+      </joint>
+      <link name='L_left_finger'>
+        <pose frame=''>-0.292719 0.099816 1.07047 1.57159 -0 -0.049</pose>
+        <inertial>
+          <pose frame=''>-0 -0.016413 0.029258 0 -0 0</pose>
+          <mass>0.048304</mass>
+          <inertia>
+            <ixx>1.7493e-05</ixx>
+            <ixy>-4.2156e-19</ixy>
+            <ixz>6.9164e-18</ixz>
+            <iyy>1.7225e-05</iyy>
+            <iyz>4.6433e-06</iyz>
+            <izz>5.1466e-06</izz>
+          </inertia>
+        </inertial>
+        <collision name='L_left_finger_collision'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/home/jcsheng/baymax_gazebo_ws/src/baymax/xarm_ros/xarm_gripper/meshes/left_finger.STL</uri>
+            </mesh>
+          </geometry>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <friction>
+              <ode/>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='L_left_finger_visual'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/home/jcsheng/baymax_gazebo_ws/src/baymax/xarm_ros/xarm_gripper/meshes/left_finger.STL</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <uri>__default__</uri>
+              <name>__default__</name>
+            </script>
+          </material>
+        </visual>
+        <gravity>1</gravity>
+        <velocity_decay/>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <joint name='L_left_finger_joint' type='revolute'>
+        <child>L_left_finger</child>
+        <parent>L_left_outer_knuckle</parent>
+        <axis>
+          <xyz>-0.9988 0.04898 -0</xyz>
+          <limit>
+            <lower>0</lower>
+            <upper>0.85</upper>
+            <effort>50</effort>
+            <velocity>2</velocity>
+          </limit>
+          <dynamics>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+          <use_parent_model_frame>1</use_parent_model_frame>
+        </axis>
+      </joint>
+      <link name='L_left_inner_knuckle'>
+        <pose frame=''>-0.291393 0.126862 1.02003 1.57159 -0 -0.049</pose>
+        <inertial>
+          <pose frame=''>2e-06 0.022047 0.026134 0 -0 0</pose>
+          <mass>0.0230126</mass>
+          <inertia>
+            <ixx>6.0949e-06</ixx>
+            <ixy>6.06651e-11</ixy>
+            <ixz>7.19103e-11</ixz>
+            <iyy>6.01955e-06</iyy>
+            <iyz>-2.75317e-06</iyz>
+            <izz>5.07862e-06</izz>
+          </inertia>
+        </inertial>
+        <collision name='L_left_inner_knuckle_collision'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/home/jcsheng/baymax_gazebo_ws/src/baymax/xarm_ros/xarm_gripper/meshes/left_inner_knuckle.STL</uri>
+            </mesh>
+          </geometry>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <friction>
+              <ode/>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='L_left_inner_knuckle_visual'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/home/jcsheng/baymax_gazebo_ws/src/baymax/xarm_ros/xarm_gripper/meshes/left_inner_knuckle.STL</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <uri>__default__</uri>
+              <name>__default__</name>
+            </script>
+          </material>
+        </visual>
+        <gravity>1</gravity>
+        <velocity_decay/>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <joint name='L_left_inner_knuckle_joint' type='revolute'>
+        <child>L_left_inner_knuckle</child>
+        <parent>L_link6</parent>
+        <axis>
+          <xyz>0.9988 -0.04898 0</xyz>
+          <limit>
+            <lower>0</lower>
+            <upper>0.85</upper>
+            <effort>50</effort>
+            <velocity>2</velocity>
+          </limit>
+          <dynamics>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+          <use_parent_model_frame>1</use_parent_model_frame>
+        </axis>
+      </joint>
+      <link name='L_right_inner_knuckle'>
+        <pose frame=''>-0.291391 0.126893 0.980031 1.57159 -0 -0.049</pose>
+        <inertial>
+          <pose frame=''>2e-06 -0.022047 0.026133 0 -0 0</pose>
+          <mass>0.023013</mass>
+          <inertia>
+            <ixx>6.0949e-06</ixx>
+            <ixy>-6.0665e-11</ixy>
+            <ixz>7.191e-11</ixz>
+            <iyy>6.0197e-06</iyy>
+            <iyz>2.7531e-06</iyz>
+            <izz>5.0784e-06</izz>
+          </inertia>
+        </inertial>
+        <collision name='L_right_inner_knuckle_collision'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/home/jcsheng/baymax_gazebo_ws/src/baymax/xarm_ros/xarm_gripper/meshes/right_inner_knuckle.STL</uri>
+            </mesh>
+          </geometry>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <friction>
+              <ode/>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='L_right_inner_knuckle_visual'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/home/jcsheng/baymax_gazebo_ws/src/baymax/xarm_ros/xarm_gripper/meshes/right_inner_knuckle.STL</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <uri>__default__</uri>
+              <name>__default__</name>
+            </script>
+          </material>
+        </visual>
+        <gravity>1</gravity>
+        <velocity_decay/>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <joint name='L_right_inner_knuckle_joint' type='revolute'>
+        <child>L_right_inner_knuckle</child>
+        <parent>L_link6</parent>
+        <axis>
+          <xyz>-0.9988 0.04898 -0</xyz>
+          <limit>
+            <lower>0</lower>
+            <upper>0.85</upper>
+            <effort>50</effort>
+            <velocity>2</velocity>
+          </limit>
+          <dynamics>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+          <use_parent_model_frame>1</use_parent_model_frame>
+        </axis>
+      </joint>
+      <link name='L_right_outer_knuckle'>
+        <pose frame=''>-0.290656 0.141887 0.965043 1.57159 -0 -0.049</pose>
+        <inertial>
+          <pose frame=''>-0 -0.021559 0.015181 0 -0 0</pose>
+          <mass>0.033618</mass>
+          <inertia>
+            <ixx>1.9111e-05</ixx>
+            <ixy>-1.8789e-17</ixy>
+            <ixz>1.0986e-17</ixz>
+            <iyy>6.6256e-06</iyy>
+            <iyz>7.3008e-06</iyz>
+            <izz>1.3185e-05</izz>
+          </inertia>
+        </inertial>
+        <collision name='L_right_outer_knuckle_collision'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/home/jcsheng/baymax_gazebo_ws/src/baymax/xarm_ros/xarm_gripper/meshes/right_outer_knuckle.STL</uri>
+            </mesh>
+          </geometry>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <friction>
+              <ode/>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='L_right_outer_knuckle_visual'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/home/jcsheng/baymax_gazebo_ws/src/baymax/xarm_ros/xarm_gripper/meshes/right_outer_knuckle.STL</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <uri>__default__</uri>
+              <name>__default__</name>
+            </script>
+          </material>
+        </visual>
+        <gravity>1</gravity>
+        <velocity_decay/>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <joint name='L_right_outer_knuckle_joint' type='revolute'>
+        <child>L_right_outer_knuckle</child>
+        <parent>L_link6</parent>
+        <axis>
+          <xyz>-0.9988 0.04898 -0</xyz>
+          <limit>
+            <lower>0</lower>
+            <upper>0.85</upper>
+            <effort>50</effort>
+            <velocity>2</velocity>
+          </limit>
+          <dynamics>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+          <use_parent_model_frame>1</use_parent_model_frame>
+        </axis>
+      </joint>
+      <link name='L_right_finger'>
+        <pose frame=''>-0.292714 0.099927 0.929545 1.57159 -0 -0.049</pose>
+        <inertial>
+          <pose frame=''>0 0.016413 0.029258 0 -0 0</pose>
+          <mass>0.048304</mass>
+          <inertia>
+            <ixx>1.7493e-05</ixx>
+            <ixy>-5.0014e-19</ixy>
+            <ixz>-7.5079e-18</ixz>
+            <iyy>1.7225e-05</iyy>
+            <iyz>-4.6435e-06</iyz>
+            <izz>5.1466e-06</izz>
+          </inertia>
+        </inertial>
+        <collision name='L_right_finger_collision'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/home/jcsheng/baymax_gazebo_ws/src/baymax/xarm_ros/xarm_gripper/meshes/right_finger.STL</uri>
+            </mesh>
+          </geometry>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <friction>
+              <ode/>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='L_right_finger_visual'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/home/jcsheng/baymax_gazebo_ws/src/baymax/xarm_ros/xarm_gripper/meshes/right_finger.STL</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <uri>__default__</uri>
+              <name>__default__</name>
+            </script>
+          </material>
+        </visual>
+        <gravity>1</gravity>
+        <velocity_decay/>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <joint name='L_right_finger_joint' type='revolute'>
+        <child>L_right_finger</child>
+        <parent>L_right_outer_knuckle</parent>
+        <axis>
+          <xyz>0.9988 -0.04898 0</xyz>
+          <limit>
+            <lower>0</lower>
+            <upper>0.85</upper>
+            <effort>50</effort>
+            <velocity>2</velocity>
+          </limit>
+          <dynamics>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+          <use_parent_model_frame>1</use_parent_model_frame>
+        </axis>
+      </joint>
+      <link name='R_link1'>
+        <pose frame=''>-0.486922 -0.365839 1.00021 1.57 -0 0.049</pose>
+        <inertial>
+          <pose frame=''>-0.002 0.02692 -0.01332 0 -0 0</pose>
+          <mass>2.16</mass>
+          <inertia>
+            <ixx>0.00539427</ixx>
+            <ixy>1.095e-05</ixy>
+            <ixz>1.635e-06</ixz>
+            <iyy>0.0048979</iyy>
+            <iyz>0.000793</iyz>
+            <izz>0.00311573</izz>
+          </inertia>
+        </inertial>
+        <collision name='R_link1_collision'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/home/jcsheng/baymax_gazebo_ws/src/baymax/xarm_ros/xarm_description/meshes/xarm6/visual/link1.stl</uri>
+            </mesh>
+          </geometry>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <friction>
+              <ode/>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='R_link1_visual'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/home/jcsheng/baymax_gazebo_ws/src/baymax/xarm_ros/xarm_description/meshes/xarm6/visual/link1.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <uri>__default__</uri>
+              <name>__default__</name>
+            </script>
+          </material>
+        </visual>
+        <gravity>1</gravity>
+        <velocity_decay/>
+        <self_collide>1</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <joint name='R_joint1' type='revolute'>
+        <child>R_link1</child>
+        <parent>bottom_link</parent>
+        <axis>
+          <xyz>0.04898 -0.998799 0.000796</xyz>
+          <limit>
+            <lower>-6.28319</lower>
+            <upper>6.28319</upper>
+            <effort>50</effort>
+            <velocity>3.14</velocity>
+          </limit>
+          <dynamics>
+            <damping>1</damping>
+            <friction>1</friction>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+          <use_parent_model_frame>1</use_parent_model_frame>
+        </axis>
+      </joint>
+      <link name='R_link2'>
+        <pose frame=''>-0.486922 -0.365839 1.00021 -0.0008 -0 0.049</pose>
+        <inertial>
+          <pose frame=''>0.03531 -0.21398 0.03386 0 -0 0</pose>
+          <mass>1.71</mass>
+          <inertia>
+            <ixx>0.0248674</ixx>
+            <ixy>-0.00430651</ixy>
+            <ixz>-0.00067797</ixz>
+            <iyy>0.00485548</iyy>
+            <iyz>0.00457245</iyz>
+            <izz>0.0238783</izz>
+          </inertia>
+        </inertial>
+        <collision name='R_link2_collision'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/home/jcsheng/baymax_gazebo_ws/src/baymax/xarm_ros/xarm_description/meshes/xarm6/visual/link2.stl</uri>
+            </mesh>
+          </geometry>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <friction>
+              <ode/>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='R_link2_visual'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/home/jcsheng/baymax_gazebo_ws/src/baymax/xarm_ros/xarm_description/meshes/xarm6/visual/link2.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <uri>__default__</uri>
+              <name>__default__</name>
+            </script>
+          </material>
+        </visual>
+        <gravity>1</gravity>
+        <velocity_decay/>
+        <self_collide>1</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <joint name='R_joint2' type='revolute'>
+        <child>R_link2</child>
+        <parent>R_link1</parent>
+        <axis>
+          <xyz>-3.9e-05 0.000799 1</xyz>
+          <limit>
+            <lower>-2.059</lower>
+            <upper>2.0944</upper>
+            <effort>50</effort>
+            <velocity>3.14</velocity>
+          </limit>
+          <dynamics>
+            <damping>1</damping>
+            <friction>1</friction>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+          <use_parent_model_frame>1</use_parent_model_frame>
+        </axis>
+      </joint>
+      <link name='R_link3'>
+        <pose frame=''>-0.419552 -0.647377 1.00044 -0.0008 -0 0.049</pose>
+        <inertial>
+          <pose frame=''>0.06781 0.10749 0.01457 0 -0 0</pose>
+          <mass>1.384</mass>
+          <inertia>
+            <ixx>0.0053694</ixx>
+            <ixy>0.0014185</ixy>
+            <ixz>-0.00092094</ixz>
+            <iyy>0.0032423</iyy>
+            <iyz>-0.00169178</iyz>
+            <izz>0.00501731</izz>
+          </inertia>
+        </inertial>
+        <collision name='R_link3_collision'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/home/jcsheng/baymax_gazebo_ws/src/baymax/xarm_ros/xarm_description/meshes/xarm6/visual/link3.stl</uri>
+            </mesh>
+          </geometry>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <friction>
+              <ode/>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='R_link3_visual'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/home/jcsheng/baymax_gazebo_ws/src/baymax/xarm_ros/xarm_description/meshes/xarm6/visual/link3.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <uri>__default__</uri>
+              <name>__default__</name>
+            </script>
+          </material>
+        </visual>
+        <gravity>1</gravity>
+        <velocity_decay/>
+        <self_collide>1</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <joint name='R_joint3' type='revolute'>
+        <child>R_link3</child>
+        <parent>R_link2</parent>
+        <axis>
+          <xyz>-3.9e-05 0.000799 1</xyz>
+          <limit>
+            <lower>-3.927</lower>
+            <upper>0.19198</upper>
+            <effort>32</effort>
+            <velocity>3.14</velocity>
+          </limit>
+          <dynamics>
+            <damping>1</damping>
+            <friction>1</friction>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+          <use_parent_model_frame>1</use_parent_model_frame>
+        </axis>
+      </joint>
+      <link name='R_link4'>
+        <pose frame=''>-0.35892 -0.301493 1.00017 -1.5716 -0 0.049</pose>
+        <inertial>
+          <pose frame=''>-0.00021 0.02578 -0.02538 0 -0 0</pose>
+          <mass>1.115</mass>
+          <inertia>
+            <ixx>0.00439263</ixx>
+            <ixy>5.028e-05</ixy>
+            <ixz>1.374e-05</ixz>
+            <iyy>0.0040077</iyy>
+            <iyz>0.00045338</iyz>
+            <izz>0.00110321</izz>
+          </inertia>
+        </inertial>
+        <collision name='R_link4_collision'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/home/jcsheng/baymax_gazebo_ws/src/baymax/xarm_ros/xarm_description/meshes/xarm6/visual/link4.stl</uri>
+            </mesh>
+          </geometry>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <friction>
+              <ode/>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='R_link4_visual'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/home/jcsheng/baymax_gazebo_ws/src/baymax/xarm_ros/xarm_description/meshes/xarm6/visual/link4.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <uri>__default__</uri>
+              <name>__default__</name>
+            </script>
+          </material>
+        </visual>
+        <gravity>1</gravity>
+        <velocity_decay/>
+        <self_collide>1</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <joint name='R_joint4' type='revolute'>
+        <child>R_link4</child>
+        <parent>R_link3</parent>
+        <axis>
+          <xyz>-0.04898 0.998799 -0.000804</xyz>
+          <limit>
+            <lower>-6.28319</lower>
+            <upper>6.28319</upper>
+            <effort>32</effort>
+            <velocity>3.14</velocity>
+          </limit>
+          <dynamics>
+            <damping>1</damping>
+            <friction>1</friction>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+          <use_parent_model_frame>1</use_parent_model_frame>
+        </axis>
+      </joint>
+      <link name='R_link5'>
+        <pose frame=''>-0.35892 -0.301493 1.00017 -0.0008 -0 0.049</pose>
+        <inertial>
+          <pose frame=''>0.05428 0.01781 0.00543 0 -0 0</pose>
+          <mass>1.275</mass>
+          <inertia>
+            <ixx>0.00120276</ixx>
+            <ixy>0.000492428</ixy>
+            <ixz>-0.00039147</ixz>
+            <iyy>0.0022876</iyy>
+            <iyz>-0.0001235</iyz>
+            <izz>0.0026866</izz>
+          </inertia>
+        </inertial>
+        <collision name='R_link5_collision'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/home/jcsheng/baymax_gazebo_ws/src/baymax/xarm_ros/xarm_description/meshes/xarm6/visual/link5.stl</uri>
+            </mesh>
+          </geometry>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <friction>
+              <ode/>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='R_link5_visual'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/home/jcsheng/baymax_gazebo_ws/src/baymax/xarm_ros/xarm_description/meshes/xarm6/visual/link5.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <uri>__default__</uri>
+              <name>__default__</name>
+            </script>
+          </material>
+        </visual>
+        <gravity>1</gravity>
+        <velocity_decay/>
+        <self_collide>1</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <joint name='R_joint5' type='revolute'>
+        <child>R_link5</child>
+        <parent>R_link4</parent>
+        <axis>
+          <xyz>-3.9e-05 0.000799 1</xyz>
+          <limit>
+            <lower>-1.69297</lower>
+            <upper>3.14159</upper>
+            <effort>32</effort>
+            <velocity>3.14</velocity>
+          </limit>
+          <dynamics>
+            <damping>1</damping>
+            <friction>1</friction>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+          <use_parent_model_frame>1</use_parent_model_frame>
+        </axis>
+      </joint>
+      <link name='R_link6'>
+        <pose frame=''>-0.287763 -0.200887 1.00009 -1.5716 -0 0.049</pose>
+        <inertial>
+          <pose frame=''>-0.000545 -0.001431 0.038342 0 -0 0</pose>
+          <mass>0.65116</mass>
+          <inertia>
+            <ixx>0.000818795</ixx>
+            <ixy>2.44297e-07</ixy>
+            <ixz>6.08903e-06</ixz>
+            <iyy>0.000680747</iyy>
+            <iyz>2.08511e-06</iyz>
+            <izz>0.000336739</izz>
+          </inertia>
+        </inertial>
+        <collision name='R_link6_collision'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/home/jcsheng/baymax_gazebo_ws/src/baymax/xarm_ros/xarm_description/meshes/xarm6/visual/link6.stl</uri>
+            </mesh>
+          </geometry>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <friction>
+              <ode/>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <collision name='R_link6_fixed_joint_lump__R_xarm_gripper_base_link_collision_1'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/home/jcsheng/baymax_gazebo_ws/src/baymax/xarm_ros/xarm_gripper/meshes/base_link.STL</uri>
+            </mesh>
+          </geometry>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <friction>
+              <ode/>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='R_link6_visual'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/home/jcsheng/baymax_gazebo_ws/src/baymax/xarm_ros/xarm_description/meshes/xarm6/visual/link6.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <uri>__default__</uri>
+              <name>__default__</name>
+            </script>
+          </material>
+        </visual>
+        <visual name='R_link6_fixed_joint_lump__R_xarm_gripper_base_link_visual_1'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/home/jcsheng/baymax_gazebo_ws/src/baymax/xarm_ros/xarm_gripper/meshes/base_link.STL</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <uri>__default__</uri>
+              <name>__default__</name>
+            </script>
+          </material>
+        </visual>
+        <velocity_decay/>
+        <gravity>1</gravity>
+        <velocity_decay/>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <joint name='R_joint6' type='revolute'>
+        <child>R_link6</child>
+        <parent>R_link5</parent>
+        <axis>
+          <xyz>-0.04898 0.998799 -0.000804</xyz>
+          <limit>
+            <lower>-6.28319</lower>
+            <upper>6.28319</upper>
+            <effort>20</effort>
+            <velocity>3.14</velocity>
+          </limit>
+          <dynamics>
+            <damping>1</damping>
+            <friction>1</friction>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+          <use_parent_model_frame>1</use_parent_model_frame>
+        </axis>
+      </joint>
+      <link name='R_left_outer_knuckle'>
+        <pose frame=''>-0.290656 -0.141888 0.965041 -1.5716 -0 0.049</pose>
+        <inertial>
+          <pose frame=''>0 0.021559 0.015181 0 -0 0</pose>
+          <mass>0.033618</mass>
+          <inertia>
+            <ixx>1.9111e-05</ixx>
+            <ixy>-1.8803e-17</ixy>
+            <ixz>-1.1002e-17</ixz>
+            <iyy>6.6256e-06</iyy>
+            <iyz>-7.3008e-06</iyz>
+            <izz>1.3185e-05</izz>
+          </inertia>
+        </inertial>
+        <collision name='R_left_outer_knuckle_collision'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/home/jcsheng/baymax_gazebo_ws/src/baymax/xarm_ros/xarm_gripper/meshes/left_outer_knuckle.STL</uri>
+            </mesh>
+          </geometry>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <friction>
+              <ode/>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='R_left_outer_knuckle_visual'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/home/jcsheng/baymax_gazebo_ws/src/baymax/xarm_ros/xarm_gripper/meshes/left_outer_knuckle.STL</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <uri>__default__</uri>
+              <name>__default__</name>
+            </script>
+          </material>
+        </visual>
+        <gravity>1</gravity>
+        <velocity_decay/>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <joint name='R_drive_joint' type='revolute'>
+        <child>R_left_outer_knuckle</child>
+        <parent>R_link6</parent>
+        <axis>
+          <xyz>0.9988 0.04898 0</xyz>
+          <limit>
+            <lower>0</lower>
+            <upper>0.85</upper>
+            <effort>50</effort>
+            <velocity>2</velocity>
+          </limit>
+          <dynamics>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+          <use_parent_model_frame>1</use_parent_model_frame>
+        </axis>
+      </joint>
+      <link name='R_left_finger'>
+        <pose frame=''>-0.292714 -0.099928 0.929542 -1.5716 -0 0.049</pose>
+        <inertial>
+          <pose frame=''>-0 -0.016413 0.029258 0 -0 0</pose>
+          <mass>0.048304</mass>
+          <inertia>
+            <ixx>1.7493e-05</ixx>
+            <ixy>-4.2156e-19</ixy>
+            <ixz>6.9164e-18</ixz>
+            <iyy>1.7225e-05</iyy>
+            <iyz>4.6433e-06</iyz>
+            <izz>5.1466e-06</izz>
+          </inertia>
+        </inertial>
+        <collision name='R_left_finger_collision'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/home/jcsheng/baymax_gazebo_ws/src/baymax/xarm_ros/xarm_gripper/meshes/left_finger.STL</uri>
+            </mesh>
+          </geometry>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <friction>
+              <ode/>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='R_left_finger_visual'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/home/jcsheng/baymax_gazebo_ws/src/baymax/xarm_ros/xarm_gripper/meshes/left_finger.STL</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <uri>__default__</uri>
+              <name>__default__</name>
+            </script>
+          </material>
+        </visual>
+        <gravity>1</gravity>
+        <velocity_decay/>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <joint name='R_left_finger_joint' type='revolute'>
+        <child>R_left_finger</child>
+        <parent>R_left_outer_knuckle</parent>
+        <axis>
+          <xyz>-0.9988 -0.04898 -0</xyz>
+          <limit>
+            <lower>0</lower>
+            <upper>0.85</upper>
+            <effort>50</effort>
+            <velocity>2</velocity>
+          </limit>
+          <dynamics>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+          <use_parent_model_frame>1</use_parent_model_frame>
+        </axis>
+      </joint>
+      <link name='R_left_inner_knuckle'>
+        <pose frame=''>-0.291391 -0.126894 0.980029 -1.5716 -0 0.049</pose>
+        <inertial>
+          <pose frame=''>2e-06 0.022047 0.026134 0 -0 0</pose>
+          <mass>0.0230126</mass>
+          <inertia>
+            <ixx>6.0949e-06</ixx>
+            <ixy>6.06651e-11</ixy>
+            <ixz>7.19103e-11</ixz>
+            <iyy>6.01955e-06</iyy>
+            <iyz>-2.75317e-06</iyz>
+            <izz>5.07862e-06</izz>
+          </inertia>
+        </inertial>
+        <collision name='R_left_inner_knuckle_collision'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/home/jcsheng/baymax_gazebo_ws/src/baymax/xarm_ros/xarm_gripper/meshes/left_inner_knuckle.STL</uri>
+            </mesh>
+          </geometry>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <friction>
+              <ode/>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='R_left_inner_knuckle_visual'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/home/jcsheng/baymax_gazebo_ws/src/baymax/xarm_ros/xarm_gripper/meshes/left_inner_knuckle.STL</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <uri>__default__</uri>
+              <name>__default__</name>
+            </script>
+          </material>
+        </visual>
+        <gravity>1</gravity>
+        <velocity_decay/>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <joint name='R_left_inner_knuckle_joint' type='revolute'>
+        <child>R_left_inner_knuckle</child>
+        <parent>R_link6</parent>
+        <axis>
+          <xyz>0.9988 0.04898 0</xyz>
+          <limit>
+            <lower>0</lower>
+            <upper>0.85</upper>
+            <effort>50</effort>
+            <velocity>2</velocity>
+          </limit>
+          <dynamics>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+          <use_parent_model_frame>1</use_parent_model_frame>
+        </axis>
+      </joint>
+      <link name='R_right_inner_knuckle'>
+        <pose frame=''>-0.291393 -0.126862 1.02003 -1.5716 -0 0.049</pose>
+        <inertial>
+          <pose frame=''>2e-06 -0.022047 0.026133 0 -0 0</pose>
+          <mass>0.023013</mass>
+          <inertia>
+            <ixx>6.0949e-06</ixx>
+            <ixy>-6.0665e-11</ixy>
+            <ixz>7.191e-11</ixz>
+            <iyy>6.0197e-06</iyy>
+            <iyz>2.7531e-06</iyz>
+            <izz>5.0784e-06</izz>
+          </inertia>
+        </inertial>
+        <collision name='R_right_inner_knuckle_collision'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/home/jcsheng/baymax_gazebo_ws/src/baymax/xarm_ros/xarm_gripper/meshes/right_inner_knuckle.STL</uri>
+            </mesh>
+          </geometry>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <friction>
+              <ode/>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='R_right_inner_knuckle_visual'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/home/jcsheng/baymax_gazebo_ws/src/baymax/xarm_ros/xarm_gripper/meshes/right_inner_knuckle.STL</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <uri>__default__</uri>
+              <name>__default__</name>
+            </script>
+          </material>
+        </visual>
+        <gravity>1</gravity>
+        <velocity_decay/>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <joint name='R_right_inner_knuckle_joint' type='revolute'>
+        <child>R_right_inner_knuckle</child>
+        <parent>R_link6</parent>
+        <axis>
+          <xyz>-0.9988 -0.04898 -0</xyz>
+          <limit>
+            <lower>0</lower>
+            <upper>0.85</upper>
+            <effort>50</effort>
+            <velocity>2</velocity>
+          </limit>
+          <dynamics>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+          <use_parent_model_frame>1</use_parent_model_frame>
+        </axis>
+      </joint>
+      <link name='R_right_outer_knuckle'>
+        <pose frame=''>-0.290659 -0.141831 1.03504 -1.5716 -0 0.049</pose>
+        <inertial>
+          <pose frame=''>-0 -0.021559 0.015181 0 -0 0</pose>
+          <mass>0.033618</mass>
+          <inertia>
+            <ixx>1.9111e-05</ixx>
+            <ixy>-1.8789e-17</ixy>
+            <ixz>1.0986e-17</ixz>
+            <iyy>6.6256e-06</iyy>
+            <iyz>7.3008e-06</iyz>
+            <izz>1.3185e-05</izz>
+          </inertia>
+        </inertial>
+        <collision name='R_right_outer_knuckle_collision'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/home/jcsheng/baymax_gazebo_ws/src/baymax/xarm_ros/xarm_gripper/meshes/right_outer_knuckle.STL</uri>
+            </mesh>
+          </geometry>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <friction>
+              <ode/>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='R_right_outer_knuckle_visual'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/home/jcsheng/baymax_gazebo_ws/src/baymax/xarm_ros/xarm_gripper/meshes/right_outer_knuckle.STL</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <uri>__default__</uri>
+              <name>__default__</name>
+            </script>
+          </material>
+        </visual>
+        <gravity>1</gravity>
+        <velocity_decay/>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <joint name='R_right_outer_knuckle_joint' type='revolute'>
+        <child>R_right_outer_knuckle</child>
+        <parent>R_link6</parent>
+        <axis>
+          <xyz>-0.9988 -0.04898 -0</xyz>
+          <limit>
+            <lower>0</lower>
+            <upper>0.85</upper>
+            <effort>50</effort>
+            <velocity>2</velocity>
+          </limit>
+          <dynamics>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+          <use_parent_model_frame>1</use_parent_model_frame>
+        </axis>
+      </joint>
+      <link name='R_right_finger'>
+        <pose frame=''>-0.292719 -0.099815 1.07047 -1.5716 -0 0.049</pose>
+        <inertial>
+          <pose frame=''>0 0.016413 0.029258 0 -0 0</pose>
+          <mass>0.048304</mass>
+          <inertia>
+            <ixx>1.7493e-05</ixx>
+            <ixy>-5.0014e-19</ixy>
+            <ixz>-7.5079e-18</ixz>
+            <iyy>1.7225e-05</iyy>
+            <iyz>-4.6435e-06</iyz>
+            <izz>5.1466e-06</izz>
+          </inertia>
+        </inertial>
+        <collision name='R_right_finger_collision'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/home/jcsheng/baymax_gazebo_ws/src/baymax/xarm_ros/xarm_gripper/meshes/right_finger.STL</uri>
+            </mesh>
+          </geometry>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <friction>
+              <ode/>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='R_right_finger_visual'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/home/jcsheng/baymax_gazebo_ws/src/baymax/xarm_ros/xarm_gripper/meshes/right_finger.STL</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <uri>__default__</uri>
+              <name>__default__</name>
+            </script>
+          </material>
+        </visual>
+        <gravity>1</gravity>
+        <velocity_decay/>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <joint name='R_right_finger_joint' type='revolute'>
+        <child>R_right_finger</child>
+        <parent>R_right_outer_knuckle</parent>
+        <axis>
+          <xyz>0.9988 0.04898 0</xyz>
+          <limit>
+            <lower>0</lower>
+            <upper>0.85</upper>
+            <effort>50</effort>
+            <velocity>2</velocity>
+          </limit>
+          <dynamics>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+          <use_parent_model_frame>1</use_parent_model_frame>
+        </axis>
+      </joint>
+      <plugin name='gazebo_grasp_fix' filename='libgazebo_grasp_fix.so'>
+        <arm>
+          <arm_name>robot</arm_name>
+          <palm_link>R_link6</palm_link>
+          <palm_link>L_link6</palm_link>
+          <gripper_link>L_left_outer_knuckle</gripper_link>
+          <gripper_link>L_left_finger</gripper_link>
+          <gripper_link>L_left_inner_knuckle</gripper_link>
+          <gripper_link>L_right_outer_knuckle</gripper_link>
+          <gripper_link>L_right_finger</gripper_link>
+          <gripper_link>L_right_inner_knuckle</gripper_link>
+          <gripper_link>R_left_outer_knuckle</gripper_link>
+          <gripper_link>R_left_finger</gripper_link>
+          <gripper_link>R_left_inner_knuckle</gripper_link>
+          <gripper_link>R_right_outer_knuckle</gripper_link>
+          <gripper_link>R_right_finger</gripper_link>
+          <gripper_link>R_right_inner_knuckle</gripper_link>
+        </arm>
+        <forces_angle_tolerance>100</forces_angle_tolerance>
+        <update_rate>4</update_rate>
+        <grip_count_threshold>4</grip_count_threshold>
+        <max_grip_count>8</max_grip_count>
+        <release_tolerance>0.005</release_tolerance>
+        <disable_collisions_on_attach>1</disable_collisions_on_attach>
+        <contact_topic>__default_topic__</contact_topic>
+        <robotNamespace>/</robotNamespace>
+      </plugin>
+      <plugin name='L_left_finger_jointmimic_joint_plugin' filename='libroboticsgroup_upatras_gazebo_mimic_joint_plugin.so'>
+        <joint>L_drive_joint</joint>
+        <mimicJoint>L_left_finger_joint</mimicJoint>
+        <multiplier>1.0</multiplier>
+        <offset>0</offset>
+        <sensitiveness>0.0</sensitiveness>
+        <maxEffort>10.0</maxEffort>
+        <robotNamespace>/</robotNamespace>
+      </plugin>
+      <plugin name='L_left_inner_knuckle_jointmimic_joint_plugin' filename='libroboticsgroup_upatras_gazebo_mimic_joint_plugin.so'>
+        <joint>L_drive_joint</joint>
+        <mimicJoint>L_left_inner_knuckle_joint</mimicJoint>
+        <multiplier>1.0</multiplier>
+        <offset>0</offset>
+        <sensitiveness>0.0</sensitiveness>
+        <maxEffort>10.0</maxEffort>
+        <robotNamespace>/</robotNamespace>
+      </plugin>
+      <plugin name='L_right_outer_knuckle_jointmimic_joint_plugin' filename='libroboticsgroup_upatras_gazebo_mimic_joint_plugin.so'>
+        <joint>L_drive_joint</joint>
+        <mimicJoint>L_right_outer_knuckle_joint</mimicJoint>
+        <multiplier>1.0</multiplier>
+        <offset>0</offset>
+        <sensitiveness>0.0</sensitiveness>
+        <maxEffort>10.0</maxEffort>
+        <robotNamespace>/</robotNamespace>
+      </plugin>
+      <plugin name='L_right_finger_jointmimic_joint_plugin' filename='libroboticsgroup_upatras_gazebo_mimic_joint_plugin.so'>
+        <joint>L_drive_joint</joint>
+        <mimicJoint>L_right_finger_joint</mimicJoint>
+        <multiplier>1.0</multiplier>
+        <offset>0</offset>
+        <sensitiveness>0.0</sensitiveness>
+        <maxEffort>10.0</maxEffort>
+        <robotNamespace>/</robotNamespace>
+      </plugin>
+      <plugin name='L_right_inner_knuckle_jointmimic_joint_plugin' filename='libroboticsgroup_upatras_gazebo_mimic_joint_plugin.so'>
+        <joint>L_drive_joint</joint>
+        <mimicJoint>L_right_inner_knuckle_joint</mimicJoint>
+        <multiplier>1.0</multiplier>
+        <offset>0</offset>
+        <sensitiveness>0.0</sensitiveness>
+        <maxEffort>10.0</maxEffort>
+        <robotNamespace>/</robotNamespace>
+      </plugin>
+      <plugin name='R_left_finger_jointmimic_joint_plugin' filename='libroboticsgroup_upatras_gazebo_mimic_joint_plugin.so'>
+        <joint>R_drive_joint</joint>
+        <mimicJoint>R_left_finger_joint</mimicJoint>
+        <multiplier>1.0</multiplier>
+        <offset>0</offset>
+        <sensitiveness>0.0</sensitiveness>
+        <maxEffort>10.0</maxEffort>
+        <robotNamespace>/</robotNamespace>
+      </plugin>
+      <plugin name='R_left_inner_knuckle_jointmimic_joint_plugin' filename='libroboticsgroup_upatras_gazebo_mimic_joint_plugin.so'>
+        <joint>R_drive_joint</joint>
+        <mimicJoint>R_left_inner_knuckle_joint</mimicJoint>
+        <multiplier>1.0</multiplier>
+        <offset>0</offset>
+        <sensitiveness>0.0</sensitiveness>
+        <maxEffort>10.0</maxEffort>
+        <robotNamespace>/</robotNamespace>
+      </plugin>
+      <plugin name='R_right_outer_knuckle_jointmimic_joint_plugin' filename='libroboticsgroup_upatras_gazebo_mimic_joint_plugin.so'>
+        <joint>R_drive_joint</joint>
+        <mimicJoint>R_right_outer_knuckle_joint</mimicJoint>
+        <multiplier>1.0</multiplier>
+        <offset>0</offset>
+        <sensitiveness>0.0</sensitiveness>
+        <maxEffort>10.0</maxEffort>
+        <robotNamespace>/</robotNamespace>
+      </plugin>
+      <plugin name='R_right_finger_jointmimic_joint_plugin' filename='libroboticsgroup_upatras_gazebo_mimic_joint_plugin.so'>
+        <joint>R_drive_joint</joint>
+        <mimicJoint>R_right_finger_joint</mimicJoint>
+        <multiplier>1.0</multiplier>
+        <offset>0</offset>
+        <sensitiveness>0.0</sensitiveness>
+        <maxEffort>10.0</maxEffort>
+        <robotNamespace>/</robotNamespace>
+      </plugin>
+      <plugin name='R_right_inner_knuckle_jointmimic_joint_plugin' filename='libroboticsgroup_upatras_gazebo_mimic_joint_plugin.so'>
+        <joint>R_drive_joint</joint>
+        <mimicJoint>R_right_inner_knuckle_joint</mimicJoint>
+        <multiplier>1.0</multiplier>
+        <offset>0</offset>
+        <sensitiveness>0.0</sensitiveness>
+        <maxEffort>10.0</maxEffort>
+        <robotNamespace>/</robotNamespace>
+      </plugin>
+      <static>0</static>
+      <plugin name='gazebo_ros_control' filename='libgazebo_ros_control.so'>
+        <robotNamespace>/</robotNamespace>
+        <robotSimType>gazebo_ros_control/DefaultRobotHWSim</robotSimType>
+        <legacyModeNS>1</legacyModeNS>
+      </plugin>
+      <pose frame=''>0 0 0 0 -0 0</pose>
+    </model>
+    <model name='table_clone'>
+      <link name='table_box_link'>
+        <inertial>
+          <mass>1</mass>
+          <inertia>
+            <ixx>0.166667</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.166667</iyy>
+            <iyz>0</iyz>
+            <izz>0.166667</izz>
+          </inertia>
+        </inertial>
+        <self_collide>0</self_collide>
+        <kinematic>0</kinematic>
+        <enable_wind>0</enable_wind>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <visual name='visual'>
+          <geometry>
+            <box>
+              <size>0.3 0.3 0.2</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Black</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+            <shader type='pixel'/>
+          </material>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <transparency>0</transparency>
+          <cast_shadows>1</cast_shadows>
+        </visual>
+        <collision name='collision'>
+          <laser_retro>0</laser_retro>
+          <max_contacts>10</max_contacts>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <geometry>
+            <box>
+              <size>0.3 0.3 0.2</size>
+            </box>
+          </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>0.6</mu>
+                <mu2>0.6</mu2>
+                <fdir1>0 0 0</fdir1>
+                <slip1>0</slip1>
+                <slip2>0</slip2>
+              </ode>
+              <torsional>
+                <coefficient>1</coefficient>
+                <patch_radius>0</patch_radius>
+                <surface_radius>0</surface_radius>
+                <use_patch_radius>1</use_patch_radius>
+                <ode>
+                  <slip>0</slip>
+                </ode>
+              </torsional>
+            </friction>
+            <bounce>
+              <restitution_coefficient>0</restitution_coefficient>
+              <threshold>1e+06</threshold>
+            </bounce>
+            <contact>
+              <collide_without_contact>0</collide_without_contact>
+              <collide_without_contact_bitmask>1</collide_without_contact_bitmask>
+              <collide_bitmask>1</collide_bitmask>
+              <ode>
+                <soft_cfm>0</soft_cfm>
+                <soft_erp>0.2</soft_erp>
+                <kp>1e+13</kp>
+                <kd>1</kd>
+                <max_vel>0.01</max_vel>
+                <min_depth>0</min_depth>
+              </ode>
+              <bullet>
+                <split_impulse>1</split_impulse>
+                <split_impulse_penetration_threshold>-0.01</split_impulse_penetration_threshold>
+                <soft_cfm>0</soft_cfm>
+                <soft_erp>0.2</soft_erp>
+                <kp>1e+13</kp>
+                <kd>1</kd>
+              </bullet>
+            </contact>
+          </surface>
+        </collision>
+      </link>
+      <static>1</static>
+      <allow_auto_disable>1</allow_auto_disable>
+      <pose frame=''>-0.026335 0.638196 0.5 0 -0 0</pose>
+    </model>
+    <model name='table_clone_0'>
+      <link name='table_box_link'>
+        <inertial>
+          <mass>1</mass>
+          <inertia>
+            <ixx>0.166667</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.166667</iyy>
+            <iyz>0</iyz>
+            <izz>0.166667</izz>
+          </inertia>
+        </inertial>
+        <self_collide>0</self_collide>
+        <kinematic>0</kinematic>
+        <enable_wind>0</enable_wind>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <visual name='visual'>
+          <geometry>
+            <box>
+              <size>0.3 0.3 0.2</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Black</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+            <shader type='pixel'/>
+          </material>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <transparency>0</transparency>
+          <cast_shadows>1</cast_shadows>
+        </visual>
+        <collision name='collision'>
+          <laser_retro>0</laser_retro>
+          <max_contacts>10</max_contacts>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <geometry>
+            <box>
+              <size>0.3 0.3 0.2</size>
+            </box>
+          </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>0.6</mu>
+                <mu2>0.6</mu2>
+                <fdir1>0 0 0</fdir1>
+                <slip1>0</slip1>
+                <slip2>0</slip2>
+              </ode>
+              <torsional>
+                <coefficient>1</coefficient>
+                <patch_radius>0</patch_radius>
+                <surface_radius>0</surface_radius>
+                <use_patch_radius>1</use_patch_radius>
+                <ode>
+                  <slip>0</slip>
+                </ode>
+              </torsional>
+            </friction>
+            <bounce>
+              <restitution_coefficient>0</restitution_coefficient>
+              <threshold>1e+06</threshold>
+            </bounce>
+            <contact>
+              <collide_without_contact>0</collide_without_contact>
+              <collide_without_contact_bitmask>1</collide_without_contact_bitmask>
+              <collide_bitmask>1</collide_bitmask>
+              <ode>
+                <soft_cfm>0</soft_cfm>
+                <soft_erp>0.2</soft_erp>
+                <kp>1e+13</kp>
+                <kd>1</kd>
+                <max_vel>0.01</max_vel>
+                <min_depth>0</min_depth>
+              </ode>
+              <bullet>
+                <split_impulse>1</split_impulse>
+                <split_impulse_penetration_threshold>-0.01</split_impulse_penetration_threshold>
+                <soft_cfm>0</soft_cfm>
+                <soft_erp>0.2</soft_erp>
+                <kp>1e+13</kp>
+                <kd>1</kd>
+              </bullet>
+            </contact>
+          </surface>
+        </collision>
+      </link>
+      <static>1</static>
+      <allow_auto_disable>1</allow_auto_disable>
+      <pose frame=''>0.00513 -0.670689 0.5 0 -0 0</pose>
+    </model>
+    <model name='coke_canbox_clone'>
+      <link name='coke_can'>
+        <inertial>
+          <mass>0.001</mass>
+          <inertia>
+            <ixx>0.00016</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.00016</iyy>
+            <iyz>0</iyz>
+            <izz>6e-05</izz>
+          </inertia>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+        </inertial>
+        <self_collide>0</self_collide>
+        <kinematic>0</kinematic>
+        <enable_wind>0</enable_wind>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <gravity>1</gravity>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>model://coke_can/meshes/coke_can.dae</uri>
+              <scale>0.2 0.15 0.18</scale>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Green</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+            <shader type='vertex'>
+              <normal_map>__default__</normal_map>
+            </shader>
+          </material>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <transparency>0</transparency>
+          <cast_shadows>1</cast_shadows>
+        </visual>
+        <collision name='collision'>
+          <laser_retro>0</laser_retro>
+          <max_contacts>10</max_contacts>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>/home/jcsheng/.gazebo/models/coke_can/meshes/coke_can.dae</uri>
+              <scale>0.2 0.15 0.18</scale>
+            </mesh>
+          </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>100</mu>
+                <mu2>100</mu2>
+                <fdir1>0 0 0</fdir1>
+                <slip1>0</slip1>
+                <slip2>0</slip2>
+              </ode>
+              <torsional>
+                <coefficient>1</coefficient>
+                <patch_radius>0</patch_radius>
+                <surface_radius>0</surface_radius>
+                <use_patch_radius>1</use_patch_radius>
+                <ode>
+                  <slip>0</slip>
+                </ode>
+              </torsional>
+            </friction>
+            <bounce>
+              <restitution_coefficient>0</restitution_coefficient>
+              <threshold>1e+06</threshold>
+            </bounce>
+            <contact>
+              <collide_without_contact>0</collide_without_contact>
+              <collide_without_contact_bitmask>1</collide_without_contact_bitmask>
+              <collide_bitmask>1</collide_bitmask>
+              <ode>
+                <soft_cfm>0</soft_cfm>
+                <soft_erp>0.2</soft_erp>
+                <kp>1e+07</kp>
+                <kd>1</kd>
+                <max_vel>0.1</max_vel>
+                <min_depth>0.001</min_depth>
+              </ode>
+              <bullet>
+                <split_impulse>1</split_impulse>
+                <split_impulse_penetration_threshold>-0.01</split_impulse_penetration_threshold>
+                <soft_cfm>0</soft_cfm>
+                <soft_erp>0.2</soft_erp>
+                <kp>1e+07</kp>
+                <kd>1</kd>
+              </bullet>
+            </contact>
+          </surface>
+        </collision>
+      </link>
+      <static>0</static>
+      <allow_auto_disable>1</allow_auto_disable>
+      <pose frame=''>-0.068003 0.654993 0.515965 0.006164 -0.03767 9.4e-05</pose>
+    </model>
+    <model name='coke_canbox_clone_clone'>
+      <link name='coke_can'>
+        <inertial>
+          <mass>0.001</mass>
+          <inertia>
+            <ixx>0.00016</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.00016</iyy>
+            <iyz>0</iyz>
+            <izz>6e-05</izz>
+          </inertia>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+        </inertial>
+        <self_collide>0</self_collide>
+        <kinematic>0</kinematic>
+        <enable_wind>0</enable_wind>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <gravity>1</gravity>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>model://coke_can/meshes/coke_can.dae</uri>
+              <scale>0.2 0.15 0.18</scale>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Green</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+            <shader type='vertex'>
+              <normal_map>__default__</normal_map>
+            </shader>
+          </material>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <transparency>0</transparency>
+          <cast_shadows>1</cast_shadows>
+        </visual>
+        <collision name='collision'>
+          <laser_retro>0</laser_retro>
+          <max_contacts>10</max_contacts>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>/home/jcsheng/.gazebo/models/coke_can/meshes/coke_can.dae</uri>
+              <scale>0.2 0.15 0.18</scale>
+            </mesh>
+          </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>100</mu>
+                <mu2>100</mu2>
+                <fdir1>0 0 0</fdir1>
+                <slip1>0</slip1>
+                <slip2>0</slip2>
+              </ode>
+              <torsional>
+                <coefficient>1</coefficient>
+                <patch_radius>0</patch_radius>
+                <surface_radius>0</surface_radius>
+                <use_patch_radius>1</use_patch_radius>
+                <ode>
+                  <slip>0</slip>
+                </ode>
+              </torsional>
+            </friction>
+            <bounce>
+              <restitution_coefficient>0</restitution_coefficient>
+              <threshold>1e+06</threshold>
+            </bounce>
+            <contact>
+              <collide_without_contact>0</collide_without_contact>
+              <collide_without_contact_bitmask>1</collide_without_contact_bitmask>
+              <collide_bitmask>1</collide_bitmask>
+              <ode>
+                <soft_cfm>0</soft_cfm>
+                <soft_erp>0.2</soft_erp>
+                <kp>1e+07</kp>
+                <kd>1</kd>
+                <max_vel>0.1</max_vel>
+                <min_depth>0.001</min_depth>
+              </ode>
+              <bullet>
+                <split_impulse>1</split_impulse>
+                <split_impulse_penetration_threshold>-0.01</split_impulse_penetration_threshold>
+                <soft_cfm>0</soft_cfm>
+                <soft_erp>0.2</soft_erp>
+                <kp>1e+07</kp>
+                <kd>1</kd>
+              </bullet>
+            </contact>
+          </surface>
+        </collision>
+      </link>
+      <static>0</static>
+      <allow_auto_disable>1</allow_auto_disable>
+      <pose frame=''>-0.028516 0.001364 0.516204 -0.011619 -0.059583 -0.000285</pose>
+    </model>
+  </world>
+</sdf>

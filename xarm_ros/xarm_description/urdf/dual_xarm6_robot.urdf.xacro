@@ -11,12 +11,11 @@
   <xacro:include filename="$(find xarm_gripper)/urdf/xarm_gripper_model.xacro" />
   <xacro:include filename="$(find xarm_description)/urdf/common.gazebo.xacro" />
 
-<gazebo>
+<!--<gazebo>
    <plugin name="gazebo_grasp_fix" filename="libgazebo_grasp_fix.so">
         <arm>
            <arm_name>robot</arm_name>
            <palm_link> L_link6  </palm_link>
-           <!--<gripper_link> L_link6 </gripper_link>-->
            <gripper_link> L_left_outer_knuckle </gripper_link>
            <gripper_link> L_left_finger </gripper_link>
            <gripper_link> L_left_inner_knuckle </gripper_link>
@@ -32,7 +31,8 @@
        <disable_collisions_on_attach>true</disable_collisions_on_attach>
        <contact_topic>__default_topic__</contact_topic>
     </plugin>
-</gazebo>
+</gazebo>-->
+
 
 
 
