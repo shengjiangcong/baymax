@@ -2455,7 +2455,6 @@
         <arm>
           <arm_name>robot</arm_name>
           <palm_link>L_link6</palm_link>
-          <palm_link>R_link6</palm_link>
           <gripper_link>L_left_outer_knuckle</gripper_link>
           <gripper_link>L_left_finger</gripper_link>
           <gripper_link>L_left_inner_knuckle</gripper_link>

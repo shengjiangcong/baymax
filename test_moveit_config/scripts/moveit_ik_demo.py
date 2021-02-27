@@ -68,7 +68,7 @@ class MoveItIkDemo:
         # 姿态使用四元数描述，基于base_link坐标系
 
 
-
+        rospy.set_param("lor",1)
 
 
 
@@ -183,7 +183,7 @@ class MoveItIkDemo:
 
 
 
-
+        rospy.set_param("lor",2)
 
         target_pose = PoseStamped()
         target_pose.header.frame_id = reference_frame
@@ -239,62 +239,54 @@ class MoveItIkDemo:
         rgripper.go()
         rospy.sleep(1)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         target_pose = PoseStamped()
         target_pose.header.frame_id = reference_frame
         target_pose.header.stamp = rospy.Time.now()     
         target_pose.pose.position.x = -0.0776
-        target_pose.pose.position.y = 0
+        target_pose.pose.position.y = -0.5
         target_pose.pose.position.z = 0.85
         target_pose.pose.orientation.x = 1.0
         target_pose.pose.orientation.y = 0.0
         target_pose.pose.orientation.z = 0.0
         target_pose.pose.orientation.w = 0.0
 
-
-
-        target_pose1 = PoseStamped()
-        target_pose1.header.frame_id = reference_frame
-        target_pose1.header.stamp = rospy.Time.now()     
-        target_pose1.pose.position.x = -0.0776
-        target_pose1.pose.position.y = 0.5
-        target_pose1.pose.position.z = 0.92
-        target_pose1.pose.orientation.x = 1.0
-        target_pose1.pose.orientation.y = 0.0
-        target_pose1.pose.orientation.z = 0.0
-        target_pose1.pose.orientation.w = 0.0
-
         # 设置机器臂当前的状态作为运动初始状态
-        xarms.set_start_state_to_current_state()
+        rarm.set_start_state_to_current_state()
         
         # 设置机械臂终端运动的目标位姿
-        xarms.set_pose_target(target_pose, rend_effector_link)
-        xarms.set_pose_target(target_pose1, end_effector_link)
+        rarm.set_pose_target(target_pose, rend_effector_link)
         
         # 规划运动路径
-        traj = xarms.plan()
+        traj = rarm.plan()
         
         # 按照规划的运动路径控制机械臂运动
-        xarms.execute(traj)
+        rarm.execute(traj)
         rospy.sleep(1)
+
+      #   target_pose1 = PoseStamped()
+      #   target_pose1.header.frame_id = reference_frame
+       #  target_pose1.header.stamp = rospy.Time.now()     
+        # target_pose1.pose.position.x = -0.0776
+       #  target_pose1.pose.position.y = 0.5
+       #  target_pose1.pose.position.z = 0.92
+        # target_pose1.pose.orientation.x = 1.0
+       #  target_pose1.pose.orientation.y = 0.0
+       #  target_pose1.pose.orientation.z = 0.0
+       #  target_pose1.pose.orientation.w = 0.0
+
+        # 设置机器臂当前的状态作为运动初始状态
+       #  xarms.set_start_state_to_current_state()
+        
+        # 设置机械臂终端运动的目标位姿
+        # xarms.set_pose_target(target_pose, rend_effector_link)
+       #  xarms.set_pose_target(target_pose1, end_effector_link)
+        
+        # 规划运动路径
+       #  traj = xarms.plan()
+        
+        # 按照规划的运动路径控制机械臂运动
+        #xarms.execute(traj)
+        #rospy.sleep(1)
 
 
         rgripper.set_joint_value_target([0.1])
