@@ -476,6 +476,16 @@ int16_t robc_ARM6DOF_Anno_ikcalc(float Dest[6])
 	worldy = ARM6DOF_para.DestPos[1];
 	worldz = ARM6DOF_para.DestPos[2];
 	worldrr = ARM6DOF_para.DestPos[3];
+
+
+
+
+
+
+
+
+
+
 	worldrp = ARM6DOF_para.DestPos[4];
 	worldry = ARM6DOF_para.DestPos[5];
 
@@ -694,20 +704,20 @@ int16_t robc_ARM6DOF_Anno_kicalc(float JointVal[6])
 	printf("%f\n", matrix_T3[1][3]);
 	printf("%f\n", matrix_T3[2][3]);*/
 
-	printf("%f\n", matrix_T4[0][3]);
+	/*printf("%f\n", matrix_T4[0][3]);
 	printf("%f\n", matrix_T4[1][3]);
 	printf("%f\n", matrix_T4[2][3]);
 
 	printf("%f\n", matrix_T5[0][3]);
 	printf("%f\n", matrix_T5[1][3]);
-	printf("%f\n", matrix_T5[2][3]);
+	printf("%f\n", matrix_T5[2][3]);*/
 
 	printf("%f\n", ARM6DOF_para.PosVal[0]);	
 	printf("%f\n", ARM6DOF_para.PosVal[1]);
 	printf("%f\n", ARM6DOF_para.PosVal[2]);
-	/*printf("%f\n", ARM6DOF_para.PosVal[3]);
+	printf("%f\n", ARM6DOF_para.PosVal[3]);
 	printf("%f\n", ARM6DOF_para.PosVal[4]);
-	printf("%f\n", ARM6DOF_para.PosVal[5]);*/
+	printf("%f\n", ARM6DOF_para.PosVal[5]);
 
 
 
