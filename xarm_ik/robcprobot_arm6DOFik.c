@@ -682,13 +682,32 @@ int16_t robc_ARM6DOF_Anno_kicalc(float JointVal[6])
 	ARM6DOF_para.PosVal[3] = atan2(matrix_T6[1][0], matrix_T6[0][0]);
 	ARM6DOF_para.PosVal[4] = atan2(-matrix_T6[2][0], sqrt(pow(matrix_T6[2][1],2)+ pow(matrix_T6[2][2],2)));
 	ARM6DOF_para.PosVal[5] = atan2(matrix_T6[2][1], matrix_T6[2][2]);
+	/*printf("%f\n", matrix_T1[0][3]);
+	printf("%f\n", matrix_T1[1][3]);
+	printf("%f\n", matrix_T1[2][3]);
+
+	printf("%f\n", matrix_T2[0][3]);
+	printf("%f\n", matrix_T2[1][3]);
+	printf("%f\n", matrix_T2[2][3]);
+
+	printf("%f\n", matrix_T3[0][3]);
+	printf("%f\n", matrix_T3[1][3]);
+	printf("%f\n", matrix_T3[2][3]);*/
+
+	printf("%f\n", matrix_T4[0][3]);
+	printf("%f\n", matrix_T4[1][3]);
+	printf("%f\n", matrix_T4[2][3]);
+
+	printf("%f\n", matrix_T5[0][3]);
+	printf("%f\n", matrix_T5[1][3]);
+	printf("%f\n", matrix_T5[2][3]);
 
 	printf("%f\n", ARM6DOF_para.PosVal[0]);	
 	printf("%f\n", ARM6DOF_para.PosVal[1]);
 	printf("%f\n", ARM6DOF_para.PosVal[2]);
-	printf("%f\n", ARM6DOF_para.PosVal[3]);
+	/*printf("%f\n", ARM6DOF_para.PosVal[3]);
 	printf("%f\n", ARM6DOF_para.PosVal[4]);
-	printf("%f\n", ARM6DOF_para.PosVal[5]);
+	printf("%f\n", ARM6DOF_para.PosVal[5]);*/
 
 
 
